@@ -1,0 +1,28 @@
+[tool]
+[tool.pylint.master]
+output-format = "colorized"
+
+[tool.pylint.messages_control]
+disable = [
+    "too-few-public-methods",
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "wrong-import-order",
+    "logging-fstring-interpolation",
+]
+
+[tool.poetry]
+name = "fluent_python"
+version = "0.1.0"
+description = ""
+authors = ["resoliwan <resoliwan@naver.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
