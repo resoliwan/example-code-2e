@@ -89,7 +89,7 @@ import math
 
 
 class Vector:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, components):
         self._components = array(self.typecode, components)  # <1>
@@ -99,15 +99,14 @@ class Vector:
 
     def __repr__(self):
         components = reprlib.repr(self._components)  # <3>
-        components = components[components.find('['):-1]  # <4>
-        return f'Vector({components})'
+        components = components[components.find("[") : -1]  # <4>
+        return f"Vector({components})"
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) +
-                bytes(self._components))  # <5>
+        return bytes([ord(self.typecode)]) + bytes(self._components)  # <5>
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
@@ -123,4 +122,6 @@ class Vector:
         typecode = chr(octets[0])
         memv = memoryview(octets[1:]).cast(typecode)
         return cls(memv)  # <7>
+
+
 # end::VECTOR_V1[]

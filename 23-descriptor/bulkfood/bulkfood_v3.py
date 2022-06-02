@@ -35,7 +35,6 @@ No change was made::
 
 # tag::LINEITEM_QUANTITY_V3[]
 class Quantity:  # <1>
-
     def __init__(self, storage_name):
         self.storage_name = storage_name  # <2>
 
@@ -43,7 +42,7 @@ class Quantity:  # <1>
         if value > 0:
             instance.__dict__[self.storage_name] = value  # <4>
         else:
-            msg = f'{self.storage_name} must be > 0'
+            msg = f"{self.storage_name} must be > 0"
             raise ValueError(msg)
 
     def __get__(self, instance, owner):  # <5>
@@ -54,8 +53,8 @@ class Quantity:  # <1>
 
 # tag::LINEITEM_V3[]
 class LineItem:
-    weight = Quantity('weight')  # <1>
-    price = Quantity('price')  # <2>
+    weight = Quantity("weight")  # <1>
+    price = Quantity("price")  # <2>
 
     def __init__(self, description, weight, price):  # <3>
         self.description = description
@@ -64,4 +63,6 @@ class LineItem:
 
     def subtotal(self):
         return self.weight * self.price
+
+
 # end::LINEITEM_V3[]

@@ -5,4 +5,6 @@ from dataclasses import dataclass
 class ClubMember:
     name: str
     guests: list = []
+
+
 # end::CLUBMEMBER[]

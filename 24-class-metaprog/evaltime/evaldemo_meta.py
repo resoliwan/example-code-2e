@@ -3,20 +3,21 @@
 from builderlib import Builder, deco, Descriptor
 from metalib import MetaKlass  # <1>
 
-print('# evaldemo_meta module start')
+print("# evaldemo_meta module start")
+
 
 @deco
 class Klass(Builder, metaclass=MetaKlass):  # <2>
-    print('# Klass body')
+    print("# Klass body")
 
     attr = Descriptor()
 
     def __init__(self):
         super().__init__()
-        print(f'# Klass.__init__({self!r})')
+        print(f"# Klass.__init__({self!r})")
 
     def __repr__(self):
-        return '<Klass instance>'
+        return "<Klass instance>"
 
 
 def main():
@@ -27,7 +28,7 @@ def main():
     obj.attr = 999
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
-print('# evaldemo_meta module end')
+print("# evaldemo_meta module end")

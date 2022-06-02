@@ -2,36 +2,52 @@
 from collections.abc import Callable, Iterable
 from typing import Protocol, Any, TypeVar, overload, Union
 
-class SupportsLessThan(Protocol):
-    def __lt__(self, other: Any) -> bool: ...
 
-T = TypeVar('T')
-LT = TypeVar('LT', bound=SupportsLessThan)
-DT = TypeVar('DT')
+class SupportsLessThan(Protocol):
+    def __lt__(self, other: Any) -> bool:
+        ...
+
+
+T = TypeVar("T")
+LT = TypeVar("LT", bound=SupportsLessThan)
+DT = TypeVar("DT")
 
 MISSING = object()
-EMPTY_MSG = 'max() arg is an empty sequence'
+EMPTY_MSG = "max() arg is an empty sequence"
+
 
 @overload
 def max(__arg1: LT, __arg2: LT, *args: LT, key: None = ...) -> LT:
     ...
+
+
 @overload
 def max(__arg1: T, __arg2: T, *args: T, key: Callable[[T], LT]) -> T:
     ...
+
+
 @overload
 def max(__iterable: Iterable[LT], *, key: None = ...) -> LT:
     ...
+
+
 @overload
 def max(__iterable: Iterable[T], *, key: Callable[[T], LT]) -> T:
     ...
+
+
 @overload
-def max(__iterable: Iterable[LT], *, key: None = ...,
-        default: DT) -> Union[LT, DT]:
+def max(__iterable: Iterable[LT], *, key: None = ..., default: DT) -> Union[LT, DT]:
     ...
+
+
 @overload
-def max(__iterable: Iterable[T], *, key: Callable[[T], LT],
-        default: DT) -> Union[T, DT]:
+def max(
+    __iterable: Iterable[T], *, key: Callable[[T], LT], default: DT
+) -> Union[T, DT]:
     ...
+
+
 # end::MYMAX_TYPES[]
 # tag::MYMAX[]
 def max(first, *args, key=None, default=MISSING):
@@ -58,4 +74,6 @@ def max(first, *args, key=None, default=MISSING):
                 candidate = current
                 candidate_key = current_key
     return candidate
+
+
 # end::MYMAX[]

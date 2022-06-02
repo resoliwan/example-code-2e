@@ -69,7 +69,7 @@ import math
 
 
 class Vector2d:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, x, y):
         self.x = float(x)
@@ -80,7 +80,7 @@ class Vector2d:
 
     def __repr__(self):
         class_name = type(self).__name__
-        return '{}({!r}, {!r})'.format(class_name, *self)
+        return "{}({!r}, {!r})".format(class_name, *self)
 
     def __str__(self):
         return str(tuple(self))
@@ -100,18 +100,19 @@ class Vector2d:
     def angle(self):
         return math.atan2(self.y, self.x)
 
-# tag::VECTOR2D_V2_FORMAT[]
-    def __format__(self, fmt_spec=''):
-        if fmt_spec.endswith('p'):  # <1>
+    # tag::VECTOR2D_V2_FORMAT[]
+    def __format__(self, fmt_spec=""):
+        if fmt_spec.endswith("p"):  # <1>
             fmt_spec = fmt_spec[:-1]  # <2>
             coords = (abs(self), self.angle())  # <3>
-            outer_fmt = '<{}, {}>'  # <4>
+            outer_fmt = "<{}, {}>"  # <4>
         else:
             coords = self  # <5>
-            outer_fmt = '({}, {})'  # <6>
+            outer_fmt = "({}, {})"  # <6>
         components = (format(c, fmt_spec) for c in coords)  # <7>
         return outer_fmt.format(*components)  # <8>
-# end::VECTOR2D_V2_FORMAT[]
+
+    # end::VECTOR2D_V2_FORMAT[]
 
     @classmethod
     def frombytes(cls, octets):

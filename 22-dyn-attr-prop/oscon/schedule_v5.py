@@ -26,7 +26,8 @@ import inspect
 
 from functools import cached_property, cache
 
-JSON_PATH = 'data/osconfeed.json'
+JSON_PATH = "data/osconfeed.json"
+
 
 class Record:
 
@@ -36,7 +37,7 @@ class Record:
         self.__dict__.update(kwargs)
 
     def __repr__(self):
-        return f'<{self.__class__.__name__} serial={self.serial!r}>'
+        return f"<{self.__class__.__name__} serial={self.serial!r}>"
 
     @staticmethod
     def fetch(key):
@@ -46,34 +47,36 @@ class Record:
 
 
 class Event(Record):
-
     def __repr__(self):
         try:
-            return f'<{self.__class__.__name__} {self.name!r}>'
+            return f"<{self.__class__.__name__} {self.name!r}>"
         except AttributeError:
             return super().__repr__()
 
-# tag::SCHEDULE5_CACHED_PROPERTY[]
+    # tag::SCHEDULE5_CACHED_PROPERTY[]
     @cached_property
     def venue(self):
-        key = f'venue.{self.venue_serial}'
+        key = f"venue.{self.venue_serial}"
         return self.__class__.fetch(key)
-# end::SCHEDULE5_CACHED_PROPERTY[]
-# tag::SCHEDULE5_PROPERTY_OVER_CACHE[]
+
+    # end::SCHEDULE5_CACHED_PROPERTY[]
+    # tag::SCHEDULE5_PROPERTY_OVER_CACHE[]
     @property  # <1>
     @cache  # <2>
     def speakers(self):
-        spkr_serials = self.__dict__['speakers']
+        spkr_serials = self.__dict__["speakers"]
         fetch = self.__class__.fetch
-        return [fetch(f'speaker.{key}')
-                for key in spkr_serials]
+        return [fetch(f"speaker.{key}") for key in spkr_serials]
+
+
 # end::SCHEDULE5_PROPERTY_OVER_CACHE[]
+
 
 def load(path=JSON_PATH):
     records = {}
     with open(path) as fp:
         raw_data = json.load(fp)
-    for collection, raw_records in raw_data['Schedule'].items():
+    for collection, raw_records in raw_data["Schedule"].items():
         record_type = collection[:-1]
         cls_name = record_type.capitalize()
         cls = globals().get(cls_name, Record)

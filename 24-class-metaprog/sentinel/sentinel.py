@@ -37,5 +37,5 @@ class _SentinelMeta(type):
 
 class Sentinel(metaclass=_SentinelMeta):
     def __new__(cls):
-        msg = 'is a sentinel and cannot be instantiated'
+        msg = "is a sentinel and cannot be instantiated"
         raise TypeError(f"'{cls!r}' {msg}")

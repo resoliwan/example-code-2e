@@ -40,18 +40,18 @@
 # tag::STRATEGY_BEST2[]
 from decimal import Decimal
 from strategy import Order
-from strategy import (
-    fidelity_promo, bulk_item_promo, large_order_promo  # <1>
-)
+from strategy import fidelity_promo, bulk_item_promo, large_order_promo  # <1>
 
-promos = [promo for name, promo in globals().items()  # <2>
-                if name.endswith('_promo') and        # <3>
-                   name != 'best_promo'               # <4>
+promos = [
+    promo
+    for name, promo in globals().items()  # <2>
+    if name.endswith("_promo") and name != "best_promo"  # <3>  # <4>
 ]
 
 
-def best_promo(order: Order) -> Decimal:              # <5>
+def best_promo(order: Order) -> Decimal:  # <5>
     """Compute the best discount available"""
     return max(promo(order) for promo in promos)
+
 
 # end::STRATEGY_BEST2[]

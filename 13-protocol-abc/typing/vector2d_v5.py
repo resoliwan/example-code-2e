@@ -102,8 +102,9 @@ from array import array
 import math
 from typing import SupportsComplex, Iterator
 
+
 class Vector2d:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, x, y) -> None:
         self.__x = float(x)
@@ -122,14 +123,13 @@ class Vector2d:
 
     def __repr__(self) -> str:
         class_name = type(self).__name__
-        return '{}({!r}, {!r})'.format(class_name, *self)
+        return "{}({!r}, {!r})".format(class_name, *self)
 
     def __str__(self) -> str:
         return str(tuple(self))
 
     def __bytes__(self) -> bytes:
-        return (bytes([ord(self.typecode)]) +
-                bytes(array(self.typecode, self)))
+        return bytes([ord(self.typecode)]) + bytes(array(self.typecode, self))
 
     def __eq__(self, other) -> bool:
         return tuple(self) == tuple(other)
@@ -143,14 +143,14 @@ class Vector2d:
     def angle(self) -> float:
         return math.atan2(self.y, self.x)
 
-    def __format__(self, fmt_spec='') -> str:
-        if fmt_spec.endswith('p'):
+    def __format__(self, fmt_spec="") -> str:
+        if fmt_spec.endswith("p"):
             fmt_spec = fmt_spec[:-1]
             coords = (abs(self), self.angle())
-            outer_fmt = '<{}, {}>'
+            outer_fmt = "<{}, {}>"
         else:
             coords = self
-            outer_fmt = '({}, {})'
+            outer_fmt = "({}, {})"
         components = (format(c, fmt_spec) for c in coords)
         return outer_fmt.format(*components)
 
@@ -160,7 +160,7 @@ class Vector2d:
         memv = memoryview(octets[1:]).cast(typecode)
         return cls(*memv)
 
-# tag::VECTOR2D_V5_COMPLEX[]
+    # tag::VECTOR2D_V5_COMPLEX[]
     def __abs__(self) -> float:  # <1>
         return math.hypot(self.x, self.y)
 
@@ -171,4 +171,6 @@ class Vector2d:
     def fromcomplex(cls, datum: SupportsComplex) -> Vector2d:  # <3>
         c = complex(datum)  # <4>
         return cls(c.real, c.imag)
+
+
 # end::VECTOR2D_V5_COMPLEX[]

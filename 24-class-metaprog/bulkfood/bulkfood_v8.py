@@ -72,6 +72,7 @@ Fields can be retrieved in the order they were declared:
 
 import model_v8 as model
 
+
 class LineItem(model.Entity):
     description = model.NonBlank()
     weight = model.Quantity()

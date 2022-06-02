@@ -40,7 +40,6 @@ instance attributes, created in each ``LineItem`` instance::
 
 # tag::LINEITEM_V2_PROP_FACTORY_FUNCTION[]
 def quantity(storage_name):  # <1>
-
     def qty_getter(instance):  # <2>
         return instance.__dict__[storage_name]  # <3>
 
@@ -48,16 +47,18 @@ def quantity(storage_name):  # <1>
         if value > 0:
             instance.__dict__[storage_name] = value  # <5>
         else:
-            raise ValueError('value must be > 0')
+            raise ValueError("value must be > 0")
 
     return property(qty_getter, qty_setter)  # <6>
+
+
 # end::LINEITEM_V2_PROP_FACTORY_FUNCTION[]
 
 
 # tag::LINEITEM_V2_PROP_CLASS[]
 class LineItem:
-    weight = quantity('weight')  # <1>
-    price = quantity('price')  # <2>
+    weight = quantity("weight")  # <1>
+    price = quantity("price")  # <2>
 
     def __init__(self, description, weight, price):
         self.description = description
@@ -66,4 +67,6 @@ class LineItem:
 
     def subtotal(self):
         return self.weight * self.price  # <4>
+
+
 # end::LINEITEM_V2_PROP_CLASS[]

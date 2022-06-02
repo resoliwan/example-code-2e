@@ -10,9 +10,9 @@ def test_field_descriptor_validation_type_error():
         weight: float
 
     with pytest.raises(TypeError) as e:
-        felix = Cat(name='Felix', weight=None)
+        felix = Cat(name="Felix", weight=None)
 
-    assert str(e.value) == 'None is not compatible with weight:float.'
+    assert str(e.value) == "None is not compatible with weight:float."
 
 
 def test_field_descriptor_validation_value_error():
@@ -21,7 +21,7 @@ def test_field_descriptor_validation_value_error():
         weight: float
 
     with pytest.raises(TypeError) as e:
-        felix = Cat(name='Felix', weight='half stone')
+        felix = Cat(name="Felix", weight="half stone")
 
     assert str(e.value) == "'half stone' is not compatible with weight:float."
 
@@ -32,6 +32,6 @@ def test_constructor_attribute_error():
         weight: float
 
     with pytest.raises(AttributeError) as e:
-        felix = Cat(name='Felix', weight=3.2, age=7)
+        felix = Cat(name="Felix", weight=3.2, age=7)
 
     assert str(e.value) == "'Cat' has no attribute 'age'"

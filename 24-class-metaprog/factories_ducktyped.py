@@ -37,11 +37,11 @@ FieldNames = Union[str, Sequence[str]]
 
 def parse_identifiers(names):
     try:
-        names = names.replace(',', ' ').split()  # <1>
+        names = names.replace(",", " ").split()  # <1>
     except AttributeError:  # no .replace or .split
         pass  # assume it's already a sequence of strings
     if not all(s.isidentifier() for s in names):
-        raise ValueError('names must all be valid identifiers')
+        raise ValueError("names must all be valid identifiers")
     return tuple(names)
 
 
@@ -60,11 +60,9 @@ def record_factory(cls_name, field_names):
             yield getattr(self, name)
 
     def __repr__(self):  # <6>
-        values = ', '.join(
-            '{}={!r}'.format(*i) for i in zip(self.__slots__, self)
-        )
+        values = ", ".join("{}={!r}".format(*i) for i in zip(self.__slots__, self))
         cls_name = self.__class__.__name__
-        return f'{cls_name}({values})'
+        return f"{cls_name}({values})"
 
     cls_attrs = dict(
         __slots__=field_identifiers,  # <7>

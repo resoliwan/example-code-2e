@@ -1,4 +1,3 @@
-
 """
 Radical folding and diacritic mark removal.
 
@@ -35,45 +34,49 @@ import string
 
 def shave_marks(txt):
     """Remove all diacritic marks"""
-    norm_txt = unicodedata.normalize('NFD', txt)  # <1>
-    shaved = ''.join(c for c in norm_txt
-                     if not unicodedata.combining(c))  # <2>
-    return unicodedata.normalize('NFC', shaved)  # <3>
+    norm_txt = unicodedata.normalize("NFD", txt)  # <1>
+    shaved = "".join(c for c in norm_txt if not unicodedata.combining(c))  # <2>
+    return unicodedata.normalize("NFC", shaved)  # <3>
+
+
 # end::SHAVE_MARKS[]
 
 # tag::SHAVE_MARKS_LATIN[]
 def shave_marks_latin(txt):
     """Remove all diacritic marks from Latin base characters"""
-    norm_txt = unicodedata.normalize('NFD', txt)  # <1>
+    norm_txt = unicodedata.normalize("NFD", txt)  # <1>
     latin_base = False
     preserve = []
     for c in norm_txt:
-        if unicodedata.combining(c) and latin_base:   # <2>
+        if unicodedata.combining(c) and latin_base:  # <2>
             continue  # ignore diacritic on Latin base char
-        preserve.append(c)                            # <3>
+        preserve.append(c)  # <3>
         # if it isn't a combining char, it's a new base char
-        if not unicodedata.combining(c):              # <4>
+        if not unicodedata.combining(c):  # <4>
             latin_base = c in string.ascii_letters
-    shaved = ''.join(preserve)
-    return unicodedata.normalize('NFC', shaved)   # <5>
+    shaved = "".join(preserve)
+    return unicodedata.normalize("NFC", shaved)  # <5>
+
+
 # end::SHAVE_MARKS_LATIN[]
 
 # tag::ASCIIZE[]
-single_map = str.maketrans("""‚ƒ„ˆ‹‘’“”•–—˜›""",  # <1>
-                           """'f"^<''""---~>""")
+single_map = str.maketrans("""‚ƒ„ˆ‹‘’“”•–—˜›""", """'f"^<''""---~>""")  # <1>
 
-multi_map = str.maketrans({  # <2>
-    '€': 'EUR',
-    '…': '...',
-    'Æ': 'AE',
-    'æ': 'ae',
-    'Œ': 'OE',
-    'œ': 'oe',
-    '™': '(TM)',
-    '‰': '<per mille>',
-    '†': '**',
-    '‡': '***',
-})
+multi_map = str.maketrans(
+    {  # <2>
+        "€": "EUR",
+        "…": "...",
+        "Æ": "AE",
+        "æ": "ae",
+        "Œ": "OE",
+        "œ": "oe",
+        "™": "(TM)",
+        "‰": "<per mille>",
+        "†": "**",
+        "‡": "***",
+    }
+)
 
 multi_map.update(single_map)  # <3>
 
@@ -84,7 +87,9 @@ def dewinize(txt):
 
 
 def asciize(txt):
-    no_marks = shave_marks_latin(dewinize(txt))     # <5>
-    no_marks = no_marks.replace('ß', 'ss')          # <6>
-    return unicodedata.normalize('NFKC', no_marks)  # <7>
+    no_marks = shave_marks_latin(dewinize(txt))  # <5>
+    no_marks = no_marks.replace("ß", "ss")  # <6>
+    return unicodedata.normalize("NFKC", no_marks)  # <7>
+
+
 # end::ASCIIZE[]

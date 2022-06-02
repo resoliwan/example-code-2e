@@ -41,14 +41,17 @@ class ResourceType(Enum):  # <1>
 @dataclass
 class Resource:
     """Media resource description."""
-    identifier: str                                    # <2>
-    title: str = '<untitled>'                          # <3>
+
+    identifier: str  # <2>
+    title: str = "<untitled>"  # <3>
     creators: list[str] = field(default_factory=list)
-    date: Optional[date] = None                        # <4>
-    type: ResourceType = ResourceType.BOOK             # <5>
-    description: str = ''
-    language: str = ''
+    date: Optional[date] = None  # <4>
+    type: ResourceType = ResourceType.BOOK  # <5>
+    description: str = ""
+    language: str = ""
     subjects: list[str] = field(default_factory=list)
+
+
 # end::DATACLASS[]
 
 
@@ -66,22 +69,29 @@ class ResourceDict(TypedDict):
     subjects: list[str]
 
 
-if __name__ == '__main__':
-    r = Resource('0')
-    description = 'Improving the design of existing code'
-    book = Resource('978-0-13-475759-9', 'Refactoring, 2nd Edition',
-                    ['Martin Fowler', 'Kent Beck'], date(2018, 11, 19),
-                    ResourceType.BOOK, description,
-                    'EN', ['computer programming', 'OOP'])
+if __name__ == "__main__":
+    r = Resource("0")
+    description = "Improving the design of existing code"
+    book = Resource(
+        "978-0-13-475759-9",
+        "Refactoring, 2nd Edition",
+        ["Martin Fowler", "Kent Beck"],
+        date(2018, 11, 19),
+        ResourceType.BOOK,
+        description,
+        "EN",
+        ["computer programming", "OOP"],
+    )
     print(book)
     book_dict: ResourceDict = {
-        'identifier': '978-0-13-475759-9',
-        'title': 'Refactoring, 2nd Edition',
-        'creators': ['Martin Fowler', 'Kent Beck'],
-        'date': date(2018, 11, 19),
-        'type': ResourceType.BOOK,
-        'description': 'Improving the design of existing code',
-        'language': 'EN',
-        'subjects': ['computer programming', 'OOP']}
+        "identifier": "978-0-13-475759-9",
+        "title": "Refactoring, 2nd Edition",
+        "creators": ["Martin Fowler", "Kent Beck"],
+        "date": date(2018, 11, 19),
+        "type": ResourceType.BOOK,
+        "description": "Improving the design of existing code",
+        "language": "EN",
+        "subjects": ["computer programming", "OOP"],
+    }
     book2 = Resource(**book_dict)
     print(book == book2)

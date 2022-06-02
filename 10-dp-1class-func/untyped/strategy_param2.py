@@ -26,11 +26,10 @@
 
 from collections import namedtuple
 
-Customer = namedtuple('Customer', 'name fidelity')
+Customer = namedtuple("Customer", "name fidelity")
 
 
 class LineItem:
-
     def __init__(self, product, quantity, price):
         self.product = product
         self.quantity = quantity
@@ -41,14 +40,13 @@ class LineItem:
 
 
 class Order:  # the Context
-
     def __init__(self, customer, cart, promotion=None):
         self.customer = customer
         self.cart = list(cart)
         self.promotion = promotion
 
     def total(self):
-        if not hasattr(self, '__total'):
+        if not hasattr(self, "__total"):
             self.__total = sum(item.total() for item in self.cart)
         return self.__total
 
@@ -60,7 +58,7 @@ class Order:  # the Context
         return self.total() - discount
 
     def __repr__(self):
-        return f'<Order total: {self.total():.2f} due: {self.due():.2f}>'
+        return f"<Order total: {self.total():.2f} due: {self.due():.2f}>"
 
 
 class Promotion:

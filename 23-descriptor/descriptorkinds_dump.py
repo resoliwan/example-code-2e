@@ -1,5 +1,3 @@
-
-
 """
 Overriding descriptor (a.k.a. data descriptor or enforced descriptor):
 
@@ -125,36 +123,36 @@ No descriptor type survives being overwritten on the class itself:
 # BEGIN DESCRIPTORKINDS
 def print_args(name, *args):  # <1>
     cls_name = args[0].__class__.__name__
-    arg_names = ['self', 'instance', 'owner']
-    if name == 'set':
-        arg_names[-1] = 'value'
-    print('{}.__{}__() invoked with args:'.format(cls_name, name))
+    arg_names = ["self", "instance", "owner"]
+    if name == "set":
+        arg_names[-1] = "value"
+    print("{}.__{}__() invoked with args:".format(cls_name, name))
     for arg_name, value in zip(arg_names, args):
-        print('    {:8} = {}'.format(arg_name, value))
+        print("    {:8} = {}".format(arg_name, value))
 
 
 class Overriding:  # <2>
     """a.k.a. data descriptor or enforced descriptor"""
 
     def __get__(self, instance, owner):
-        print_args('get', self, instance, owner)  # <3>
+        print_args("get", self, instance, owner)  # <3>
 
     def __set__(self, instance, value):
-        print_args('set', self, instance, value)
+        print_args("set", self, instance, value)
 
 
 class OverridingNoGet:  # <4>
     """an overriding descriptor without ``__get__``"""
 
     def __set__(self, instance, value):
-        print_args('set', self, instance, value)
+        print_args("set", self, instance, value)
 
 
 class NonOverriding:  # <5>
     """a.k.a. non-data or shadowable descriptor"""
 
     def __get__(self, instance, owner):
-        print_args('get', self, instance, owner)
+        print_args("get", self, instance, owner)
 
 
 class Model:  # <6>
@@ -163,7 +161,8 @@ class Model:  # <6>
     non_over = NonOverriding()
 
     def spam(self):  # <7>
-        print('Model.spam() invoked with arg:')
-        print('    self =', self)
+        print("Model.spam() invoked with arg:")
+        print("    self =", self)
 
-#END DESCRIPTORKINDS
+
+# END DESCRIPTORKINDS

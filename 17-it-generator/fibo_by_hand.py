@@ -10,13 +10,11 @@ Fibonacci generator implemented "by hand" without generator objects
 
 # tag::FIBO_BY_HAND[]
 class Fibonacci:
-
     def __iter__(self):
         return FibonacciGenerator()
 
 
 class FibonacciGenerator:
-
     def __init__(self):
         self.a = 0
         self.b = 1
@@ -28,6 +26,8 @@ class FibonacciGenerator:
 
     def __iter__(self):
         return self
+
+
 # end::FIBO_BY_HAND[]
 
 # for comparison, this is the usual implementation of a Fibonacci
@@ -41,12 +41,11 @@ def fibonacci():
         a, b = b, a + b
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     for x, y in zip(Fibonacci(), fibonacci()):
-        assert x == y, f'{x} != {y}'
+        assert x == y, f"{x} != {y}"
         print(x)
         if x > 10**10:
             break
-    print('etc...')
-
+    print("etc...")

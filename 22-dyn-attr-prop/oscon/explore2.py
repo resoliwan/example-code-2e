@@ -26,9 +26,10 @@ explore2.py: Script to explore the OSCON schedule feed
 from collections import abc
 import keyword
 
+
 class FrozenJSON:
     """A read-only façade for navigating a JSON-like object
-       using attribute notation
+    using attribute notation
     """
 
     def __new__(cls, arg):  # <1>
@@ -43,7 +44,7 @@ class FrozenJSON:
         self.__data = {}
         for key, value in mapping.items():
             if keyword.iskeyword(key):
-                key += '_'
+                key += "_"
             self.__data[key] = value
 
     def __getattr__(self, name):
@@ -54,4 +55,6 @@ class FrozenJSON:
 
     def __dir__(self):
         return self.__data.keys()
+
+
 # end::EXPLORE2[]

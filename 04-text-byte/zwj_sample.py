@@ -10,18 +10,19 @@ zwg_sample = """
 1F469 200D 2764 FE0F 200D 1F48B 200D 1F469 |kiss: woman, woman  |E2.0
 """
 
-markers = {'\u200D': 'ZWG',  # ZERO WIDTH JOINER
-           '\uFE0F': 'V16',  # VARIATION SELECTOR-16
-           }
+markers = {
+    "\u200D": "ZWG",  # ZERO WIDTH JOINER
+    "\uFE0F": "V16",  # VARIATION SELECTOR-16
+}
 
-for line in zwg_sample.strip().split('\n'):
-    code, descr, version = (s.strip() for s in line.split('|'))
+for line in zwg_sample.strip().split("\n"):
+    code, descr, version = (s.strip() for s in line.split("|"))
     chars = [chr(int(c, 16)) for c in code.split()]
-    print(''.join(chars), version, descr, sep='\t', end='')
+    print("".join(chars), version, descr, sep="\t", end="")
     for char in chars:
         if char in markers:
-            print(' + ' + markers[char], end='')
+            print(" + " + markers[char], end="")
         else:
-            ucode = f'U+{ord(char):04X}'
-            print(f'\n\t{char}\t{ucode}\t{name(char)}', end='')
+            ucode = f"U+{ord(char):04X}"
+            print(f"\n\t{char}\t{ucode}\t{name(char)}", end="")
     print()

@@ -59,7 +59,6 @@ Tests for update using a `dict` or a sequence of pairs::
 
 
 class StrKeyDict(dict):
-
     def __init__(self, iterable=None, **kwds):
         super().__init__()
         self.update(iterable, **kwds)

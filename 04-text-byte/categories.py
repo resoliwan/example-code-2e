@@ -26,20 +26,20 @@ def main(args):
     count = 0
     if len(args) == 2:
         for char in category_scan(args[1]):
-            print(char, end=' ')
+            print(char, end=" ")
             count += 1
             if count > 200:
                 break
         print()
-        print(count, 'characters shown')
+        print(count, "characters shown")
     else:
         counts, firsts = category_stats()
         for i, (cat, count) in enumerate(counts.most_common(), 1):
             first = firsts[cat]
-            if cat == 'Cs':
-                first = f'(surrogate U+{ord(first):04X})'
-            print(f'{i:2} {count:6} {cat} {first}')
+            if cat == "Cs":
+                first = f"(surrogate U+{ord(first):04X})"
+            print(f"{i:2} {count:6} {cat} {first}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(sys.argv)

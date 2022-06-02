@@ -16,25 +16,27 @@ from typing import Generator
 
 # Generator[YieldType, SendType, ReturnType]
 
+
 def gen_float_take_int() -> Generator[float, int, str]:
     received = yield -1.0
     while received:
         received = yield float(received)
-    return 'Done'
+    return "Done"
 
 
 def gen_float_take_float() -> Generator[float, float, str]:
     received = yield -1.0
     while received:
         received = yield float(received)
-    return 'Done'
+    return "Done"
 
 
 def gen_float_take_complex() -> Generator[float, complex, str]:
     received = yield -1.0
     while received:
         received = yield abs(received)
-    return 'Done'
+    return "Done"
+
 
 # Generator[YieldType, SendType, ReturnType]
 
@@ -56,4 +58,3 @@ g3: Generator[float, int, str] = gen_float_take_float()
 ##   expression has type "Generator[float, float, str]"
 ##     variable has type "Generator[float, complex, str]")
 ## g4: Generator[float, complex, str] = gen_float_take_float()
-

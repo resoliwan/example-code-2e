@@ -64,6 +64,7 @@ for the description:
 # tag::LINEITEM_V7[]
 import model_v7 as model
 
+
 class LineItem(model.Entity):  # <1>
     description = model.NonBlank()
     weight = model.Quantity()
@@ -76,4 +77,6 @@ class LineItem(model.Entity):  # <1>
 
     def subtotal(self):
         return self.weight * self.price
+
+
 # end::LINEITEM_V7[]

@@ -23,7 +23,6 @@ from inspect import getmembers, isfunction
 
 
 class Tombola(ABC):  # <1>
-
     @abstractmethod
     def __init__(self, iterable):  # <2>
         """New instance is loaded from an iterable."""

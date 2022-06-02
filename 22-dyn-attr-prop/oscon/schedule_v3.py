@@ -23,7 +23,8 @@ schedule_v3.py: property to get list of event speakers
 import inspect
 import json
 
-JSON_PATH = 'data/osconfeed.json'
+JSON_PATH = "data/osconfeed.json"
+
 
 class Record:
 
@@ -33,7 +34,7 @@ class Record:
         self.__dict__.update(kwargs)
 
     def __repr__(self):
-        return f'<{self.__class__.__name__} serial={self.serial!r}>'
+        return f"<{self.__class__.__name__} serial={self.serial!r}>"
 
     @staticmethod
     def fetch(key):
@@ -43,25 +44,24 @@ class Record:
 
 
 class Event(Record):
-
     def __repr__(self):
         try:
-            return f'<{self.__class__.__name__} {self.name!r}>'
+            return f"<{self.__class__.__name__} {self.name!r}>"
         except AttributeError:
             return super().__repr__()
 
     @property
     def venue(self):
-        key = f'venue.{self.venue_serial}'
+        key = f"venue.{self.venue_serial}"
         return self.__class__.fetch(key)
 
-# tag::SCHEDULE3_SPEAKERS[]
+    # tag::SCHEDULE3_SPEAKERS[]
     @property
     def speakers(self):
-        spkr_serials = self.__dict__['speakers']  # <1>
+        spkr_serials = self.__dict__["speakers"]  # <1>
         fetch = self.__class__.fetch
-        return [fetch(f'speaker.{key}')
-                for key in spkr_serials]  # <2>
+        return [fetch(f"speaker.{key}") for key in spkr_serials]  # <2>
+
 
 # end::SCHEDULE3_SPEAKERS[]
 
@@ -70,7 +70,7 @@ def load(path=JSON_PATH):
     records = {}
     with open(path) as fp:
         raw_data = json.load(fp)
-    for collection, raw_records in raw_data['Schedule'].items():
+    for collection, raw_records in raw_data["Schedule"].items():
         record_type = collection[:-1]
         cls_name = record_type.capitalize()
         cls = globals().get(cls_name, Record)

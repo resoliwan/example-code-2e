@@ -32,17 +32,20 @@ To fix, ``leo2`` must be created with an explicit ``handle``::
 from dataclasses import dataclass
 from club import ClubMember
 
+
 @dataclass
-class HackerClubMember(ClubMember):                         # <1>
-    all_handles = set()                                     # <2>
-    handle: str = ''                                        # <3>
+class HackerClubMember(ClubMember):  # <1>
+    all_handles = set()  # <2>
+    handle: str = ""  # <3>
 
     def __post_init__(self):
-        cls = self.__class__                                # <4>
-        if self.handle == '':                               # <5>
+        cls = self.__class__  # <4>
+        if self.handle == "":  # <5>
             self.handle = self.name.split()[0]
-        if self.handle in cls.all_handles:                  # <6>
-            msg = f'handle {self.handle!r} already exists.'
+        if self.handle in cls.all_handles:  # <6>
+            msg = f"handle {self.handle!r} already exists."
             raise ValueError(msg)
-        cls.all_handles.add(self.handle)                    # <7>
+        cls.all_handles.add(self.handle)  # <7>
+
+
 # end::HACKERCLUB[]

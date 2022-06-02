@@ -2,20 +2,21 @@
 
 from builderlib import Builder, deco, Descriptor
 
-print('# evaldemo module start')
+print("# evaldemo module start")
+
 
 @deco  # <1>
 class Klass(Builder):  # <2>
-    print('# Klass body')
+    print("# Klass body")
 
     attr = Descriptor()  # <3>
 
     def __init__(self):
         super().__init__()
-        print(f'# Klass.__init__({self!r})')
+        print(f"# Klass.__init__({self!r})")
 
     def __repr__(self):
-        return '<Klass instance>'
+        return "<Klass instance>"
 
 
 def main():  # <4>
@@ -24,7 +25,8 @@ def main():  # <4>
     obj.method_b()
     obj.attr = 999
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
 
-print('# evaldemo module end')
+print("# evaldemo module end")

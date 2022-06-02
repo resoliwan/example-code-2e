@@ -1,27 +1,36 @@
 # tag::BEVERAGE_TYPES[]
 from typing import TypeVar, Generic
 
+
 class Beverage:  # <1>
     """Any beverage."""
+
 
 class Juice(Beverage):
     """Any fruit juice."""
 
+
 class OrangeJuice(Juice):
     """Delicious juice from Brazilian oranges."""
 
-T = TypeVar('T')  # <2>
+
+T = TypeVar("T")  # <2>
+
 
 class BeverageDispenser(Generic[T]):  # <3>
     """A dispenser parameterized on the beverage type."""
+
     def __init__(self, beverage: T) -> None:
         self.beverage = beverage
 
     def dispense(self) -> T:
         return self.beverage
 
+
 def install(dispenser: BeverageDispenser[Juice]) -> None:  # <4>
     """Install a fruit juice dispenser."""
+
+
 # end::BEVERAGE_TYPES[]
 
 ################################################ exact type

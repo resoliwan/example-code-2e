@@ -15,8 +15,8 @@ expressions = """
         sys.getfilesystemencoding()
     """
 
-my_file = open('dummy', 'w')
+my_file = open("dummy", "w")
 
 for expression in expressions.split():
     value = eval(expression)
-    print(f'{expression:>30} -> {value!r}')
+    print(f"{expression:>30} -> {value!r}")

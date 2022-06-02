@@ -4,7 +4,7 @@ def tree(cls, level=0):
         yield from tree(sub_cls, level + 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for cls_name, level in tree(BaseException):
-        indent = ' ' * 4 * level
-        print(f'{indent}{cls_name}')
+        indent = " " * 4 * level
+        print(f"{indent}{cls_name}")

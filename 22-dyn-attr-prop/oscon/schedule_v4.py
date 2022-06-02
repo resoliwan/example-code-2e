@@ -22,7 +22,8 @@ schedule_v4.py: homegrown cached property for speakers
 import json
 import inspect
 
-JSON_PATH = 'data/osconfeed.json'
+JSON_PATH = "data/osconfeed.json"
+
 
 class Record:
 
@@ -32,7 +33,7 @@ class Record:
         self.__dict__.update(kwargs)
 
     def __repr__(self):
-        return f'<{self.__class__.__name__} serial={self.serial!r}>'
+        return f"<{self.__class__.__name__} serial={self.serial!r}>"
 
     @staticmethod
     def fetch(key):
@@ -43,33 +44,32 @@ class Record:
 
 # tag::SCHEDULE4_INIT[]
 class Event(Record):
-
     def __init__(self, **kwargs):
         self.__speaker_objs = None
         super().__init__(**kwargs)
 
-# end::SCHEDULE4_INIT[]
+    # end::SCHEDULE4_INIT[]
 
     def __repr__(self):
         try:
-            return f'<{self.__class__.__name__} {self.name!r}>'
+            return f"<{self.__class__.__name__} {self.name!r}>"
         except AttributeError:
             return super().__repr__()
 
     @property
     def venue(self):
-        key = f'venue.{self.venue_serial}'
+        key = f"venue.{self.venue_serial}"
         return self.__class__.fetch(key)
 
-# tag::SCHEDULE4_CACHE[]
+    # tag::SCHEDULE4_CACHE[]
     @property
     def speakers(self):
         if self.__speaker_objs is None:
-            spkr_serials = self.__dict__['speakers']
+            spkr_serials = self.__dict__["speakers"]
             fetch = self.__class__.fetch
-            self.__speaker_objs = [fetch(f'speaker.{key}')
-                    for key in spkr_serials]
+            self.__speaker_objs = [fetch(f"speaker.{key}") for key in spkr_serials]
         return self.__speaker_objs
+
 
 # end::SCHEDULE4_CACHE[]
 
@@ -78,7 +78,7 @@ def load(path=JSON_PATH):
     records = {}
     with open(path) as fp:
         raw_data = json.load(fp)
-    for collection, raw_records in raw_data['Schedule'].items():
+    for collection, raw_records in raw_data["Schedule"].items():
         record_type = collection[:-1]
         cls_name = record_type.capitalize()
         cls = globals().get(cls_name, Record)

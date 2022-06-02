@@ -14,7 +14,7 @@ class OrangeJuice(Juice):
 
 
 # tag::BEVERAGE_TYPES[]
-T_co = TypeVar('T_co', covariant=True)  # <1>
+T_co = TypeVar("T_co", covariant=True)  # <1>
 
 
 class BeverageDispenser(Generic[T_co]):  # <2>
@@ -24,8 +24,11 @@ class BeverageDispenser(Generic[T_co]):  # <2>
     def dispense(self) -> T_co:
         return self.beverage
 
+
 def install(dispenser: BeverageDispenser[Juice]) -> None:  # <3>
     """Install a fruit juice dispenser."""
+
+
 # end::BEVERAGE_TYPES[]
 
 ################################################ covariant dispenser

@@ -15,8 +15,8 @@ expected = set(i for i in range(1, 11) if i != first)
 
 assert set(remain) == expected
 
-print('picked:', first)
-print('remain:', remain)
+print("picked:", first)
+print("remain:", remain)
 
 if TYPE_CHECKING:
     reveal_type(first)
@@ -24,5 +24,3 @@ if TYPE_CHECKING:
 if TYPE_CHECKING:
     reveal_type(remain)
     # Revealed type is 'builtins.tuple[builtins.int*]'
-
-

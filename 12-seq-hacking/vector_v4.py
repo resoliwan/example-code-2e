@@ -155,7 +155,7 @@ import operator
 
 
 class Vector:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, components):
         self._components = array(self.typecode, components)
@@ -165,19 +165,17 @@ class Vector:
 
     def __repr__(self):
         components = reprlib.repr(self._components)
-        components = components[components.find('['):-1]
-        return f'Vector({components})'
+        components = components[components.find("[") : -1]
+        return f"Vector({components})"
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) +
-                bytes(self._components))
+        return bytes([ord(self.typecode)]) + bytes(self._components)
 
     def __eq__(self, other):
-        return (len(self) == len(other) and
-                all(a == b for a, b in zip(self, other)))
+        return len(self) == len(other) and all(a == b for a, b in zip(self, other))
 
     def __hash__(self):
         hashes = (hash(x) for x in self)
@@ -199,7 +197,7 @@ class Vector:
         index = operator.index(key)
         return self._components[index]
 
-    __match_args__ = ('x', 'y', 'z', 't')
+    __match_args__ = ("x", "y", "z", "t")
 
     def __getattr__(self, name):
         cls = type(self)
@@ -209,7 +207,7 @@ class Vector:
             pos = -1
         if 0 <= pos < len(self._components):
             return self._components[pos]
-        msg = f'{cls.__name__!r} object has no attribute {name!r}'
+        msg = f"{cls.__name__!r} object has no attribute {name!r}"
         raise AttributeError(msg)
 
     @classmethod

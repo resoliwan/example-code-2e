@@ -31,6 +31,7 @@ A coroutine to compute a running average
 # tag::CORO_AVERAGER[]
 from collections.abc import Generator
 
+
 def averager() -> Generator[float, float, None]:  # <1>
     total = 0.0
     count = 0
@@ -39,5 +40,7 @@ def averager() -> Generator[float, float, None]:  # <1>
         term = yield average  # <3>
         total += term
         count += 1
-        average = total/count
+        average = total / count
+
+
 # end::CORO_AVERAGER[]

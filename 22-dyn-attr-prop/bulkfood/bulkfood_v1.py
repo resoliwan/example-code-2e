@@ -26,7 +26,6 @@ But, without validation, these public attributes can cause trouble::
 
 # tag::LINEITEM_V1[]
 class LineItem:
-
     def __init__(self, description, weight, price):
         self.description = description
         self.weight = weight
@@ -34,4 +33,6 @@ class LineItem:
 
     def subtotal(self):
         return self.weight * self.price
+
+
 # end::LINEITEM_V1[]

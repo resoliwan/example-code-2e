@@ -1,6 +1,7 @@
 import collections
 import warnings
 
+
 class MetaBunch(type):
     """
     Metaclass for new and improved "Bunch": implicitly defines
@@ -23,63 +24,71 @@ class MetaBunch(type):
     In v3, the order of data attributes remains the same as in the
     class body; in v2, there is no such guarantee.
     """
+
     def __prepare__(name, *bases, **kwargs):
         # precious in v3—harmless although useless in v2
         return collections.OrderedDict()
 
     def __new__(mcl, classname, bases, classdict):
-        """ Everything needs to be done in __new__, since
-            type.__new__ is where __slots__ are taken into account.
+        """Everything needs to be done in __new__, since
+        type.__new__ is where __slots__ are taken into account.
         """
         # define as local functions the __init__ and __repr__ that
         # we'll use in the new class
         def __init__(self, **kw):
-            """ Simplistic __init__: first set all attributes to
-                default values, then override those explicitly
-                passed in kw.
+            """Simplistic __init__: first set all attributes to
+            default values, then override those explicitly
+            passed in kw.
             """
             for k in self.__dflts__:
                 setattr(self, k, self.__dflts__[k])
             for k in kw:
                 setattr(self, k, kw[k])
+
         def __repr__(self):
-            """ Clever __repr__: show only attributes that differ
-                from default values, for compactness.
+            """Clever __repr__: show only attributes that differ
+            from default values, for compactness.
             """
-            rep = ['{}={!r}'.format(k, getattr(self, k))
-                    for k in self.__dflts__
-                    if getattr(self, k) != self.__dflts__[k]
-                  ]
-            return '{}({})'.format(classname, ', '.join(rep))
+            rep = [
+                "{}={!r}".format(k, getattr(self, k))
+                for k in self.__dflts__
+                if getattr(self, k) != self.__dflts__[k]
+            ]
+            return "{}({})".format(classname, ", ".join(rep))
+
         # build the newdict that we'll use as class-dict for the
         # new class
-        newdict = { '__slots__':[], 
-            '__dflts__':collections.OrderedDict(),
-            '__init__':__init__, '__repr__':__repr__, }
+        newdict = {
+            "__slots__": [],
+            "__dflts__": collections.OrderedDict(),
+            "__init__": __init__,
+            "__repr__": __repr__,
+        }
         for k in classdict:
-            if k.startswith('__') and k.endswith('__'):
+            if k.startswith("__") and k.endswith("__"):
                 # dunder methods: copy to newdict, or warn
                 # about conflicts
                 if k in newdict:
                     warnings.warn(
-                        "Can't set attr {!r} in bunch-class {!r}".
-                        format(k, classname))
+                        "Can't set attr {!r} in bunch-class {!r}".format(k, classname)
+                    )
                 else:
                     newdict[k] = classdict[k]
             else:
                 # class variables, store name in __slots__, and
                 # name and value as an item in __dflts__
-                newdict['__slots__'].append(k)
-                newdict['__dflts__'][k] = classdict[k]
+                newdict["__slots__"].append(k)
+                newdict["__dflts__"][k] = classdict[k]
         # finally delegate the rest of the work to type.__new__
-        return super(MetaBunch, mcl).__new__(
-                     mcl, classname, bases, newdict)
+        return super(MetaBunch, mcl).__new__(mcl, classname, bases, newdict)
+
 
 class Bunch(metaclass=MetaBunch):
-    """ For convenience: inheriting from Bunch can be used to get
-        the new metaclass (same as defining metaclass= yourself).
+    """For convenience: inheriting from Bunch can be used to get
+    the new metaclass (same as defining metaclass= yourself).
 
-        In v2, remove the (metaclass=MetaBunch) above and add
-        instead __metaclass__=MetaBunch as the class body.
+    In v2, remove the (metaclass=MetaBunch) above and add
+    instead __metaclass__=MetaBunch as the class body.
     """
+
     pass

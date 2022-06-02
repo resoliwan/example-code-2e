@@ -58,7 +58,6 @@ from bingo import BingoCage
 
 
 class AddableBingoCage(BingoCage):  # <1>
-
     def __add__(self, other):
         if isinstance(other, Tombola):  # <2>
             return AddableBingoCage(self.inspect() + other.inspect())
@@ -72,10 +71,10 @@ class AddableBingoCage(BingoCage):  # <1>
             try:
                 other_iterable = iter(other)  # <4>
             except TypeError:  # <5>
-                msg = ('right operand in += must be '
-                       "'Tombola' or an iterable")
+                msg = "right operand in += must be " "'Tombola' or an iterable"
                 raise TypeError(msg)
         self.load(other_iterable)  # <6>
         return self  # <7>
+
 
 # end::ADDABLE_BINGO[]

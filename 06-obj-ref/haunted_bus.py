@@ -43,5 +43,6 @@ class HauntedBus:
 
     def drop(self, name):
         self.passengers.remove(name)
-# end::HAUNTED_BUS_CLASS[]
 
+
+# end::HAUNTED_BUS_CLASS[]

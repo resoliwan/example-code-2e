@@ -159,7 +159,7 @@ import operator
 
 
 class Vector:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, components):
         self._components = array(self.typecode, components)
@@ -169,15 +169,14 @@ class Vector:
 
     def __repr__(self):
         components = reprlib.repr(self._components)
-        components = components[components.find('['):-1]
-        return f'Vector({components})'
+        components = components[components.find("[") : -1]
+        return f"Vector({components})"
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) +
-                bytes(self._components))
+        return bytes([ord(self.typecode)]) + bytes(self._components)
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
@@ -198,8 +197,8 @@ class Vector:
         index = operator.index(key)
         return self._components[index]
 
-# tag::VECTOR_V3_GETATTR[]
-    __match_args__ = ('x', 'y', 'z', 't')  # <1>
+    # tag::VECTOR_V3_GETATTR[]
+    __match_args__ = ("x", "y", "z", "t")  # <1>
 
     def __getattr__(self, name):
         cls = type(self)  # <2>
@@ -209,26 +208,27 @@ class Vector:
             pos = -1
         if 0 <= pos < len(self._components):  # <5>
             return self._components[pos]
-        msg = f'{cls.__name__!r} object has no attribute {name!r}'  # <6>
+        msg = f"{cls.__name__!r} object has no attribute {name!r}"  # <6>
         raise AttributeError(msg)
-# end::VECTOR_V3_GETATTR[]
 
-# tag::VECTOR_V3_SETATTR[]
+    # end::VECTOR_V3_GETATTR[]
+
+    # tag::VECTOR_V3_SETATTR[]
     def __setattr__(self, name, value):
         cls = type(self)
         if len(name) == 1:  # <1>
             if name in cls.__match_args__:  # <2>
-                error = 'readonly attribute {attr_name!r}'
+                error = "readonly attribute {attr_name!r}"
             elif name.islower():  # <3>
                 error = "can't set attributes 'a' to 'z' in {cls_name!r}"
             else:
-                error = ''  # <4>
+                error = ""  # <4>
             if error:  # <5>
                 msg = error.format(cls_name=cls.__name__, attr_name=name)
                 raise AttributeError(msg)
         super().__setattr__(name, value)  # <6>
 
-# end::VECTOR_V3_SETATTR[]
+    # end::VECTOR_V3_SETATTR[]
 
     @classmethod
     def frombytes(cls, octets):

@@ -19,7 +19,8 @@ schedule_v2.py: property to get venue linked to an event
 import inspect  # <1>
 import json
 
-JSON_PATH = 'data/osconfeed.json'
+JSON_PATH = "data/osconfeed.json"
+
 
 class Record:
 
@@ -29,29 +30,32 @@ class Record:
         self.__dict__.update(kwargs)
 
     def __repr__(self):
-        return f'<{self.__class__.__name__} serial={self.serial!r}>'
+        return f"<{self.__class__.__name__} serial={self.serial!r}>"
 
     @staticmethod  # <3>
     def fetch(key):
         if Record.__index is None:  # <4>
             Record.__index = load()
         return Record.__index[key]  # <5>
+
+
 # end::SCHEDULE2_RECORD[]
 
 
 # tag::SCHEDULE2_EVENT[]
 class Event(Record):  # <1>
-
     def __repr__(self):
         try:
-            return f'<{self.__class__.__name__} {self.name!r}>'  # <2>
+            return f"<{self.__class__.__name__} {self.name!r}>"  # <2>
         except AttributeError:
             return super().__repr__()
 
     @property
     def venue(self):
-        key = f'venue.{self.venue_serial}'
+        key = f"venue.{self.venue_serial}"
         return self.__class__.fetch(key)  # <3>
+
+
 # end::SCHEDULE2_EVENT[]
 
 # tag::SCHEDULE2_LOAD[]
@@ -59,7 +63,7 @@ def load(path=JSON_PATH):
     records = {}
     with open(path) as fp:
         raw_data = json.load(fp)
-    for collection, raw_records in raw_data['Schedule'].items():
+    for collection, raw_records in raw_data["Schedule"].items():
         record_type = collection[:-1]  # <1>
         cls_name = record_type.capitalize()  # <2>
         cls = globals().get(cls_name, Record)  # <3>
@@ -71,4 +75,6 @@ def load(path=JSON_PATH):
             key = f'{record_type}.{raw_record["serial"]}'
             records[key] = factory(**raw_record)  # <8>
     return records
+
+
 # end::SCHEDULE2_LOAD[]

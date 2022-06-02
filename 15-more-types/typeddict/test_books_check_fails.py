@@ -10,11 +10,18 @@ XML_SAMPLE = """
 </BOOK>
 """.strip()
 
+
 def test_3() -> None:
-    xml = to_xml(BookDict(dict([  # Expected keyword arguments, {...}, or dict(...) in TypedDict constructor
-        ('isbn', '0134757599'),
-        ('title', 'Refactoring, 2e'),
-        ('authors', ['Martin Fowler', 'Kent Beck']),
-        ('pagecount', 478),
-    ])))
+    xml = to_xml(
+        BookDict(
+            dict(
+                [  # Expected keyword arguments, {...}, or dict(...) in TypedDict constructor
+                    ("isbn", "0134757599"),
+                    ("title", "Refactoring, 2e"),
+                    ("authors", ["Martin Fowler", "Kent Beck"]),
+                    ("pagecount", 478),
+                ]
+            )
+        )
+    )
     assert xml == XML_SAMPLE

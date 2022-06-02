@@ -78,6 +78,7 @@ is handled by the context manager):
 import contextlib
 import sys
 
+
 @contextlib.contextmanager
 def looking_glass():
     original_write = sys.stdout.write
@@ -86,13 +87,15 @@ def looking_glass():
         original_write(text[::-1])
 
     sys.stdout.write = reverse_write
-    msg = ''  # <1>
+    msg = ""  # <1>
     try:
-        yield 'JABBERWOCKY'
+        yield "JABBERWOCKY"
     except ZeroDivisionError:  # <2>
-        msg = 'Please DO NOT divide by zero!'
+        msg = "Please DO NOT divide by zero!"
     finally:
         sys.stdout.write = original_write  # <3>
         if msg:
             print(msg)  # <4>
+
+
 # end::MIRROR_GEN_EXC[]

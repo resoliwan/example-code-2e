@@ -49,17 +49,18 @@ import keyword
 
 class FrozenJSON:
     """A read-only façade for navigating a JSON-like object
-       using attribute notation
+    using attribute notation
     """
 
-# tag::EXPLORE1[]
+    # tag::EXPLORE1[]
     def __init__(self, mapping):
         self.__data = {}
         for key, value in mapping.items():
             if keyword.iskeyword(key):  # <1>
-                key += '_'
+                key += "_"
             self.__data[key] = value
-# end::EXPLORE1[]
+
+    # end::EXPLORE1[]
 
     def __getattr__(self, name):
         try:
@@ -78,4 +79,3 @@ class FrozenJSON:
             return [cls.build(item) for item in obj]
         else:  # <8>
             return obj
-

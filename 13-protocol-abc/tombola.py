@@ -2,8 +2,8 @@
 
 import abc
 
-class Tombola(abc.ABC):  # <1>
 
+class Tombola(abc.ABC):  # <1>
     @abc.abstractmethod
     def load(self, iterable):  # <2>
         """Add items from an iterable."""

@@ -18,12 +18,15 @@ DOI=10.1145/2544173.2509536 http://doi.acm.org/10.1145/2544173.2509536
 def f():
     def do_yield(n):
         yield n
+
     x = 0
     while True:
         x += 1
         do_yield(x)
+
+
 # end::YIELD_DELEGATE_FAIL[]
 
-if __name__ == '__main__':
-    print('Invoking f() results in an infinite loop')
+if __name__ == "__main__":
+    print("Invoking f() results in an infinite loop")
     f()

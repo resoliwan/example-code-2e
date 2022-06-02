@@ -1,12 +1,12 @@
 from generic_lotto import LottoBlower
 
-machine = LottoBlower[int]([1, .2])
+machine = LottoBlower[int]([1, 0.2])
 ## error: List item 1 has incompatible type "float";  # <1>
 ##        expected "int"
 
 machine = LottoBlower[int](range(1, 11))
 
-machine.load('ABC')
+machine.load("ABC")
 ## error: Argument 1 to "load" of "LottoBlower"  # <2>
 ##        has incompatible type "str";
 ##        expected "Iterable[int]"
@@ -15,4 +15,3 @@ machine.load('ABC')
 ## note:          def __iter__(self) -> Iterator[int]
 ## note:      Got:
 ## note:          def __iter__(self) -> Iterator[str]
-

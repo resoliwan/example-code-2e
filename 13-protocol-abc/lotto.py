@@ -6,7 +6,6 @@ from tombola import Tombola
 
 
 class LottoBlower(Tombola):
-
     def __init__(self, iterable):
         self._balls = list(iterable)  # <1>
 
@@ -17,7 +16,7 @@ class LottoBlower(Tombola):
         try:
             position = random.randrange(len(self._balls))  # <2>
         except ValueError:
-            raise LookupError('pick from empty LottoBlower')
+            raise LookupError("pick from empty LottoBlower")
         return self._balls.pop(position)  # <3>
 
     def loaded(self):  # <4>

@@ -10,7 +10,6 @@ Arithmetic progression class
 
 
 class ArithmeticProgression:
-
     def __init__(self, begin, step, end=None):
         self.begin = begin
         self.step = step

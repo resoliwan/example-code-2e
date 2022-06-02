@@ -38,7 +38,7 @@ import math
 
 
 class Vector2d:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, x, y):
         self.x = float(x)
@@ -49,14 +49,13 @@ class Vector2d:
 
     def __repr__(self):
         class_name = type(self).__name__
-        return '{}({!r}, {!r})'.format(class_name, *self)
+        return "{}({!r}, {!r})".format(class_name, *self)
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) +
-                bytes(array(self.typecode, self)))
+        return bytes([ord(self.typecode)]) + bytes(array(self.typecode, self))
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
@@ -67,10 +66,12 @@ class Vector2d:
     def __bool__(self):
         return bool(abs(self))
 
-# tag::VECTOR2D_V1[]
+    # tag::VECTOR2D_V1[]
     @classmethod  # <1>
     def frombytes(cls, octets):  # <2>
         typecode = chr(octets[0])  # <3>
         memv = memoryview(octets[1:]).cast(typecode)  # <4>
         return cls(*memv)  # <5>
+
+
 # end::VECTOR2D_V1[]

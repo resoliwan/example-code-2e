@@ -8,4 +8,6 @@ def aritprog_gen(begin, step, end=None):
     if end is None:
         return ap_gen
     return itertools.takewhile(lambda n: n < end, ap_gen)
+
+
 # end::ARITPROG_ITERTOOLS[]

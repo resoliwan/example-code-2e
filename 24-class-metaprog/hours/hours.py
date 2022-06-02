@@ -64,7 +64,7 @@ def normalize(s: float) -> Tuple[int, int, float]:
 
 def valid_base_60(n, unit):
     if not (0 <= n < 60):
-        raise ValueError(f'invalid {unit} {n}')
+        raise ValueError(f"invalid {unit} {n}")
     return n
 
 
@@ -73,27 +73,27 @@ class Hours:
     _m: int
     _s: float
 
-    def __class_getitem__(cls, parts: Union[slice, float]) -> 'Hours':
+    def __class_getitem__(cls, parts: Union[slice, float]) -> "Hours":
         if isinstance(parts, slice):
             h = parts.start or 0
-            m = valid_base_60(parts.stop or 0, 'minutes')
-            s = valid_base_60(parts.step or 0, 'seconds')
+            m = valid_base_60(parts.stop or 0, "minutes")
+            s = valid_base_60(parts.step or 0, "seconds")
         else:
             h, m, s = normalize(parts * 3600)
         return Hours(h, m, s)
 
     def __init__(self, h: float = 0, m: float = 0, s: float = 0):
         if h < 0 or m < 0 or s < 0:
-            raise ValueError('invalid negative argument')
+            raise ValueError("invalid negative argument")
         self.h, self.m, self.s = normalize(h * 3600 + m * 60 + s)
 
     def __repr__(self):
         h, m, s = self
-        display_s = f'{s:06.3f}'
-        display_s = display_s.rstrip('0').rstrip('.')
-        if display_s == '00':
-            return f'{h}:{m:02d}'
-        return f'{h}:{m:02d}:{display_s}'
+        display_s = f"{s:06.3f}"
+        display_s = display_s.rstrip("0").rstrip(".")
+        if display_s == "00":
+            return f"{h}:{m:02d}"
+        return f"{h}:{m:02d}:{display_s}"
 
     def __float__(self):
         return self.h + self.m / 60 + self.s / 3600

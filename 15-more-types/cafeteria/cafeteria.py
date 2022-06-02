@@ -13,7 +13,7 @@ class OrangeJuice(Juice):
     """Delicious juice from Brazilian oranges."""
 
 
-T_co = TypeVar('T_co', covariant=True)
+T_co = TypeVar("T_co", covariant=True)
 
 
 class BeverageDispenser(Generic[T_co]):
@@ -36,7 +36,7 @@ class Compostable(Biodegradable):
     """Compostable garbage."""
 
 
-T_contra = TypeVar('T_contra', contravariant=True)
+T_contra = TypeVar("T_contra", contravariant=True)
 
 
 class TrashCan(Generic[T_contra]):

@@ -9,7 +9,7 @@ class AutoStorage:
         cls = self.__class__
         prefix = cls.__name__
         index = cls.__counter
-        self.storage_name = '_{}#{}'.format(prefix, index)
+        self.storage_name = "_{}#{}".format(prefix, index)
         cls.__counter += 1
 
     def __get__(self, instance, owner):
@@ -23,7 +23,6 @@ class AutoStorage:
 
 
 class Validated(abc.ABC, AutoStorage):
-
     def __set__(self, instance, value):
         value = self.validate(instance, value)
         super().__set__(instance, value)
@@ -38,7 +37,7 @@ class Quantity(Validated):
 
     def validate(self, instance, value):
         if value <= 0:
-            raise ValueError('value must be > 0')
+            raise ValueError("value must be > 0")
         return value
 
 
@@ -48,8 +47,9 @@ class NonBlank(Validated):
     def validate(self, instance, value):
         value = value.strip()
         if len(value) == 0:
-            raise ValueError('value cannot be empty or blank')
+            raise ValueError("value cannot be empty or blank")
         return value
+
 
 # tag::MODEL_V8[]
 class EntityMeta(type):
@@ -65,7 +65,7 @@ class EntityMeta(type):
         for key, attr in attr_dict.items():  # <3>
             if isinstance(attr, Validated):
                 type_name = type(attr).__name__
-                attr.storage_name = '_{}#{}'.format(type_name, key)
+                attr.storage_name = "_{}#{}".format(type_name, key)
                 cls._field_names.append(key)  # <4>
 
 
@@ -76,5 +76,6 @@ class Entity(metaclass=EntityMeta):
     def field_names(cls):  # <5>
         for name in cls._field_names:
             yield name
+
 
 # end::MODEL_V8[]

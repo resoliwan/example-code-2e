@@ -1,20 +1,22 @@
 def first(f):
-    print(f'apply first({f.__name__})')
+    print(f"apply first({f.__name__})")
 
     def inner1st(n):
         result = f(n)
-        print(f'inner1({n}): called {f.__name__}({n}) -> {result}')
+        print(f"inner1({n}): called {f.__name__}({n}) -> {result}")
         return result
+
     return inner1st
 
 
 def second(f):
-    print(f'apply second({f.__name__})')
+    print(f"apply second({f.__name__})")
 
     def inner2nd(n):
         result = f(n)
-        print(f'inner2({n}): called {f.__name__}({n}) -> {result}')
+        print(f"inner2({n}): called {f.__name__}({n}) -> {result}")
         return result
+
     return inner2nd
 
 

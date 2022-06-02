@@ -93,7 +93,7 @@ import math
 
 # tag::VECTOR2D_V3_PROP[]
 class Vector2d:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, x, y):
         self.__x = float(x)  # <1>
@@ -111,26 +111,26 @@ class Vector2d:
         return (i for i in (self.x, self.y))  # <6>
 
     # remaining methods: same as previous Vector2d
-# end::VECTOR2D_V3_PROP[]
+    # end::VECTOR2D_V3_PROP[]
 
     def __repr__(self):
         class_name = type(self).__name__
-        return '{}({!r}, {!r})'.format(class_name, *self)
+        return "{}({!r}, {!r})".format(class_name, *self)
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) +
-                bytes(array(self.typecode, self)))
+        return bytes([ord(self.typecode)]) + bytes(array(self.typecode, self))
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
 
-# tag::VECTOR_V3_HASH[]
+    # tag::VECTOR_V3_HASH[]
     def __hash__(self):
         return hash((self.x, self.y))
-# end::VECTOR_V3_HASH[]
+
+    # end::VECTOR_V3_HASH[]
 
     def __abs__(self):
         return math.hypot(self.x, self.y)
@@ -141,14 +141,14 @@ class Vector2d:
     def angle(self):
         return math.atan2(self.y, self.x)
 
-    def __format__(self, fmt_spec=''):
-        if fmt_spec.endswith('p'):
+    def __format__(self, fmt_spec=""):
+        if fmt_spec.endswith("p"):
             fmt_spec = fmt_spec[:-1]
             coords = (abs(self), self.angle())
-            outer_fmt = '<{}, {}>'
+            outer_fmt = "<{}, {}>"
         else:
             coords = self
-            outer_fmt = '({}, {})'
+            outer_fmt = "({}, {})"
         components = (format(c, fmt_spec) for c in coords)
         return outer_fmt.format(*components)
 

@@ -52,4 +52,4 @@ class Flavor(AutoConst):
     vanilla
 
 
-print('Flavor.vanilla ==', Flavor.vanilla)
+print("Flavor.vanilla ==", Flavor.vanilla)

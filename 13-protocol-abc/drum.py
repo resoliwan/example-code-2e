@@ -4,7 +4,6 @@ from tombola import Tombola
 
 
 class TumblingDrum(Tombola):
-
     def __init__(self, iterable):
         self._balls = []
         self.load(iterable)

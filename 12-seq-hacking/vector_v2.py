@@ -116,7 +116,7 @@ import operator
 
 
 class Vector:
-    typecode = 'd'
+    typecode = "d"
 
     def __init__(self, components):
         self._components = array(self.typecode, components)
@@ -126,15 +126,14 @@ class Vector:
 
     def __repr__(self):
         components = reprlib.repr(self._components)
-        components = components[components.find('['):-1]
-        return f'Vector({components})'
+        components = components[components.find("[") : -1]
+        return f"Vector({components})"
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) +
-                bytes(self._components))
+        return bytes([ord(self.typecode)]) + bytes(self._components)
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
@@ -145,7 +144,7 @@ class Vector:
     def __bool__(self):
         return bool(abs(self))
 
-# tag::VECTOR_V2[]
+    # tag::VECTOR_V2[]
     def __len__(self):
         return len(self._components)
 
@@ -155,7 +154,8 @@ class Vector:
             return cls(self._components[key])  # <3>
         index = operator.index(key)  # <4>
         return self._components[index]  # <5>
-# end::VECTOR_V2[]
+
+    # end::VECTOR_V2[]
 
     @classmethod
     def frombytes(cls, octets):

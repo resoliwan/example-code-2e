@@ -8,19 +8,21 @@ from classic_strategy import FidelityPromo, BulkItemPromo, LargeOrderPromo
 
 @pytest.fixture
 def customer_fidelity_0() -> Customer:
-    return Customer('John Doe', 0)
+    return Customer("John Doe", 0)
 
 
 @pytest.fixture
 def customer_fidelity_1100() -> Customer:
-    return Customer('Ann Smith', 1100)
+    return Customer("Ann Smith", 1100)
 
 
 @pytest.fixture
 def cart_plain() -> List[LineItem]:
-    return [LineItem('banana', 4, .5),
-            LineItem('apple', 10, 1.5),
-            LineItem('watermelon', 5, 5.0)]
+    return [
+        LineItem("banana", 4, 0.5),
+        LineItem("apple", 10, 1.5),
+        LineItem("watermelon", 5, 5.0),
+    ]
 
 
 def test_fidelity_promo_no_discount(customer_fidelity_0, cart_plain) -> None:
@@ -42,8 +44,7 @@ def test_bulk_item_promo_no_discount(customer_fidelity_0, cart_plain) -> None:
 
 
 def test_bulk_item_promo_with_discount(customer_fidelity_0) -> None:
-    cart = [LineItem('banana', 30, .5),
-            LineItem('apple', 10, 1.5)]
+    cart = [LineItem("banana", 30, 0.5), LineItem("apple", 10, 1.5)]
     order = Order(customer_fidelity_0, cart, BulkItemPromo())
     assert order.total() == 30.0
     assert order.due() == 28.5

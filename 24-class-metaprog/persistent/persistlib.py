@@ -62,12 +62,12 @@ class Field:
         self.name = name
         self.type = py_type
 
-    def __set__(self, instance: 'Persistent', value: Any) -> None:
+    def __set__(self, instance: "Persistent", value: Any) -> None:
         try:
             value = self.type(value)
         except (TypeError, ValueError) as e:
             type_name = self.type.__name__
-            msg = f'{value!r} is not compatible with {self.name}:{type_name}.'
+            msg = f"{value!r} is not compatible with {self.name}:{type_name}."
             raise TypeError(msg) from e
         instance.__dict__[self.name] = value
 
@@ -81,12 +81,12 @@ class Persistent:
         return {
             name: py_type
             for name, py_type in get_type_hints(cls).items()
-            if not name.startswith('_')
+            if not name.startswith("_")
         }
 
-    def __init_subclass__(cls, *, table: str = '', **kwargs: Any):
+    def __init_subclass__(cls, *, table: str = "", **kwargs: Any):
         super().__init_subclass__(**kwargs)  # type:ignore
-        cls._TABLE_NAME = table if table else cls.__name__.lower() + 's'
+        cls._TABLE_NAME = table if table else cls.__name__.lower() + "s"
         for name, py_type in cls._fields().items():
             setattr(cls, name, Field(name, py_type))
 
@@ -94,19 +94,17 @@ class Persistent:
         field_names = self._asdict().keys()
         for name, arg in kwargs.items():
             if name not in field_names:
-                msg = f'{self.__class__.__name__!r} has no attribute {name!r}'
+                msg = f"{self.__class__.__name__!r} has no attribute {name!r}"
                 raise AttributeError(msg)
             setattr(self, name, arg)
         self._pk = _pk
 
     def __repr__(self) -> str:
-        kwargs = ', '.join(
-            f'{key}={value!r}' for key, value in self._asdict().items()
-        )
+        kwargs = ", ".join(f"{key}={value!r}" for key, value in self._asdict().items())
         cls_name = self.__class__.__name__
         if self._pk is None:
-            return f'{cls_name}({kwargs})'
-        return f'{cls_name}({kwargs}, _pk={self._pk})'
+            return f"{cls_name}({kwargs})"
+        return f"{cls_name}({kwargs}, _pk={self._pk})"
 
     def _asdict(self) -> dict[str, Any]:
         return {
@@ -114,7 +112,6 @@ class Persistent:
             for name, attr in self.__class__.__dict__.items()
             if isinstance(attr, Field)
         }
-
 
     # database methods
 
@@ -129,8 +126,8 @@ class Persistent:
             cls._TABLE_READY = True
         return cls._TABLE_NAME
 
-    def __class_getitem__(cls, pk: int) -> 'Persistent':
-        field_names = ['_pk'] + list(cls._fields())
+    def __class_getitem__(cls, pk: int) -> "Persistent":
+        field_names = ["_pk"] + list(cls._fields())
         values = db.fetch_record(cls._TABLE_NAME, pk)
         return cls(**dict(zip(field_names, values)))
 

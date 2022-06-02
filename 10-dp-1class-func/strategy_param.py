@@ -54,14 +54,14 @@ class Order:  # the Context
         self,
         customer: Customer,
         cart: Sequence[LineItem],
-        promotion: Optional['Promotion'] = None,
+        promotion: Optional["Promotion"] = None,
     ):
         self.customer = customer
         self.cart = list(cart)
         self.promotion = promotion
 
     def total(self) -> float:
-        if not hasattr(self, '__total'):
+        if not hasattr(self, "__total"):
             self.__total = sum(item.total() for item in self.cart)
         return self.__total
 
@@ -73,7 +73,7 @@ class Order:  # the Context
         return self.total() - discount
 
     def __repr__(self):
-        return f'<Order total: {self.total():.2f} due: {self.due():.2f}>'
+        return f"<Order total: {self.total():.2f} due: {self.due():.2f}>"
 
 
 # tag::STRATEGY_PARAM[]

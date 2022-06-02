@@ -73,9 +73,9 @@ from typing import Any, NoReturn, get_type_hints
 class Field:
     def __init__(self, name: str, constructor: Callable) -> None:
         if not callable(constructor) or constructor is type(None):
-            raise TypeError(f'{name!r} type hint must be callable')
+            raise TypeError(f"{name!r} type hint must be callable")
         self.name = name
-        self.storage_name = '_' + name  # <1>
+        self.storage_name = "_" + name  # <1>
         self.constructor = constructor
 
     def __get__(self, instance, owner=None):
@@ -91,27 +91,29 @@ class Field:
                 value = self.constructor(value)
             except (TypeError, ValueError) as e:
                 type_name = self.constructor.__name__
-                msg = f'{value!r} is not compatible with {self.name}:{type_name}'
+                msg = f"{value!r} is not compatible with {self.name}:{type_name}"
                 raise TypeError(msg) from e
         setattr(instance, self.storage_name, value)  # <4>
+
+
 # end::CHECKED_FIELD[]
 
 # tag::CHECKED_META[]
 class CheckedMeta(type):
-
     def __new__(meta_cls, cls_name, bases, cls_dict):  # <1>
-        if '__slots__' not in cls_dict:  # <2>
+        if "__slots__" not in cls_dict:  # <2>
             slots = []
-            type_hints = cls_dict.get('__annotations__', {})  # <3>
-            for name, constructor in type_hints.items():   # <4>
+            type_hints = cls_dict.get("__annotations__", {})  # <3>
+            for name, constructor in type_hints.items():  # <4>
                 field = Field(name, constructor)  # <5>
                 cls_dict[name] = field  # <6>
                 slots.append(field.storage_name)  # <7>
 
-            cls_dict['__slots__'] = slots  # <8>
+            cls_dict["__slots__"] = slots  # <8>
 
-        return super().__new__(
-                meta_cls, cls_name, bases, cls_dict)  # <9>
+        return super().__new__(meta_cls, cls_name, bases, cls_dict)  # <9>
+
+
 # end::CHECKED_META[]
 
 # tag::CHECKED_CLASS[]
@@ -130,10 +132,10 @@ class Checked(metaclass=CheckedMeta):
             self.__flag_unknown_attrs(*kwargs)
 
     def __flag_unknown_attrs(self, *names: str) -> NoReturn:
-        plural = 's' if len(names) > 1 else ''
-        extra = ', '.join(f'{name!r}' for name in names)
+        plural = "s" if len(names) > 1 else ""
+        extra = ", ".join(f"{name!r}" for name in names)
         cls_name = repr(self.__class__.__name__)
-        raise AttributeError(f'{cls_name} object has no attribute{plural} {extra}')
+        raise AttributeError(f"{cls_name} object has no attribute{plural} {extra}")
 
     def _asdict(self) -> dict[str, Any]:
         return {
@@ -143,9 +145,8 @@ class Checked(metaclass=CheckedMeta):
         }
 
     def __repr__(self) -> str:
-        kwargs = ', '.join(
-            f'{key}={value!r}' for key, value in self._asdict().items()
-        )
-        return f'{self.__class__.__name__}({kwargs})'
+        kwargs = ", ".join(f"{key}={value!r}" for key, value in self._asdict().items())
+        return f"{self.__class__.__name__}({kwargs})"
+
 
 # end::CHECKED_CLASS[]

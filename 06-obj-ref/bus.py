@@ -13,7 +13,6 @@
 
 # tag::BUS_CLASS[]
 class Bus:
-
     def __init__(self, passengers=None):
         if passengers is None:
             self.passengers = []
@@ -25,4 +24,6 @@ class Bus:
 
     def drop(self, name):
         self.passengers.remove(name)
+
+
 # end::BUS_CLASS[]

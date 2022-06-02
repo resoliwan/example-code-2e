@@ -21,15 +21,15 @@ Decimal('0.3333333333333333333333333333')
 
 import decimal
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     with decimal.localcontext() as ctx:
         ctx.prec = 40
-        print('precision:', ctx.prec)
-        one_third = decimal.Decimal('1') / decimal.Decimal('3')
-        print('    one_third:', one_third)
-        print('   +one_third:', +one_third)
+        print("precision:", ctx.prec)
+        one_third = decimal.Decimal("1") / decimal.Decimal("3")
+        print("    one_third:", one_third)
+        print("   +one_third:", +one_third)
 
-    print('precision:', decimal.getcontext().prec)
-    print('    one_third:', one_third)
-    print('   +one_third:', +one_third)
+    print("precision:", decimal.getcontext().prec)
+    print("    one_third:", one_third)
+    print("   +one_third:", +one_third)

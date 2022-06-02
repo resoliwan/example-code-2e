@@ -37,7 +37,6 @@ Tests for the `in` operator::
 
 # tag::STRKEYDICT0[]
 class StrKeyDict0(dict):  # <1>
-
     def __missing__(self, key):
         if isinstance(key, str):  # <2>
             raise KeyError(key)
@@ -51,5 +50,6 @@ class StrKeyDict0(dict):  # <1>
 
     def __contains__(self, key):
         return key in self.keys() or str(key) in self.keys()  # <6>
+
 
 # end::STRKEYDICT0[]

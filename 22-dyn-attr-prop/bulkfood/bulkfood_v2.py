@@ -41,7 +41,6 @@ white box testing)::
 
 # tag::LINEITEM_V2[]
 class LineItem:
-
     def __init__(self, description, weight, price):
         self.description = description
         self.weight = weight  # <1>
@@ -59,5 +58,7 @@ class LineItem:
         if value > 0:
             self.__weight = value  # <6>
         else:
-            raise ValueError('value must be > 0')  # <7>
+            raise ValueError("value must be > 0")  # <7>
+
+
 # end::LINEITEM_V2[]

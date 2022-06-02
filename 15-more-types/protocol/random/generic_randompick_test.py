@@ -1,7 +1,7 @@
 import random
 from typing import Iterable, Generic, TypeVar, TYPE_CHECKING
 
-T_co = TypeVar('T_co', covariant=True)
+T_co = TypeVar("T_co", covariant=True)
 
 from generic_randompick import RandomPicker
 

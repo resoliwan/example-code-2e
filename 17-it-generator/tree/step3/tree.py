@@ -12,9 +12,9 @@ def sub_tree(cls):
 
 def display(cls):
     for cls_name, level in tree(cls):
-        indent = ' ' * 4 * level
-        print(f'{indent}{cls_name}')
+        indent = " " * 4 * level
+        print(f"{indent}{cls_name}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     display(BaseException)

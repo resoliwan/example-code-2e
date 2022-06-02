@@ -13,16 +13,18 @@ async def probe(domain: str) -> tuple[str, bool]:  # <1>
         return (domain, False)
     return (domain, True)
 
+
 async def main() -> None:
     names = (kw for kw in kwlist if len(kw) <= MAX_KEYWORD_LEN)
-    domains = (f'{name}.dev'.lower() for name in names)
+    domains = (f"{name}.dev".lower() for name in names)
     async with TaskGroup() as group:  # <3>
         for domain in domains:
             await group.spawn(probe, domain)  # <4>
         async for task in group:  # <5>
             domain, found = task.result
-            mark = '+' if found else ' '
-            print(f'{mark} {domain}')
+            mark = "+" if found else " "
+            print(f"{mark} {domain}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     run(main())  # <6>

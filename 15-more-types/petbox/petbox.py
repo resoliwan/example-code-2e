@@ -18,7 +18,7 @@ class Siamese(Cat):
     """Cat breed from Thailand"""
 
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class Box(Generic[T]):
@@ -29,7 +29,7 @@ class Box(Generic[T]):
         return self.contents
 
 
-T_co = TypeVar('T_co', covariant=True)
+T_co = TypeVar("T_co", covariant=True)
 
 
 class OutBox(Generic[T_co]):
@@ -40,7 +40,7 @@ class OutBox(Generic[T_co]):
         return self.contents
 
 
-T_contra = TypeVar('T_contra', contravariant=True)
+T_contra = TypeVar("T_contra", contravariant=True)
 
 
 class InBox(Generic[T_contra]):

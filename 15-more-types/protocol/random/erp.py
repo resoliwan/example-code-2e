@@ -2,7 +2,7 @@ import random
 from typing import TypeVar, Generic, List, Iterable
 
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 class EnterpriserRandomPopper(Generic[T]):

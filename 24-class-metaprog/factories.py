@@ -34,6 +34,7 @@ from collections.abc import Iterable, Iterator
 
 FieldNames = Union[str, Iterable[str]]  # <1>
 
+
 def record_factory(cls_name: str, field_names: FieldNames) -> type[tuple]:  # <2>
 
     slots = parse_identifiers(field_names)  # <3>
@@ -49,10 +50,11 @@ def record_factory(cls_name: str, field_names: FieldNames) -> type[tuple]:  # <2
             yield getattr(self, name)
 
     def __repr__(self):  # <6>
-        values = ', '.join(f'{name}={value!r}'
-            for name, value in zip(self.__slots__, self))
+        values = ", ".join(
+            f"{name}={value!r}" for name, value in zip(self.__slots__, self)
+        )
         cls_name = self.__class__.__name__
-        return f'{cls_name}({values})'
+        return f"{cls_name}({values})"
 
     cls_attrs = dict(  # <7>
         __slots__=slots,
@@ -66,8 +68,10 @@ def record_factory(cls_name: str, field_names: FieldNames) -> type[tuple]:  # <2
 
 def parse_identifiers(names: FieldNames) -> tuple[str, ...]:
     if isinstance(names, str):
-        names = names.replace(',', ' ').split()  # <9>
+        names = names.replace(",", " ").split()  # <9>
     if not all(s.isidentifier() for s in names):
-        raise ValueError('names must all be valid identifiers')
+        raise ValueError("names must all be valid identifiers")
     return tuple(names)
+
+
 # end::RECORD_FACTORY[]

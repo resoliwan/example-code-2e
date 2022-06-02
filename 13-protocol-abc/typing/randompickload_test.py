@@ -3,6 +3,7 @@ from typing import Any, Iterable
 
 from randompickload import LoadableRandomPicker
 
+
 class SimplePicker:
     def __init__(self, items: Iterable) -> None:
         self._items = list(items)
@@ -10,6 +11,7 @@ class SimplePicker:
 
     def pick(self) -> Any:
         return self._items.pop()
+
 
 class LoadablePicker:  # <1>
     def __init__(self, items: Iterable) -> None:
@@ -22,11 +24,12 @@ class LoadablePicker:  # <1>
         self._items = list(items)
         random.shuffle(self._items)
 
+
 def test_isinstance() -> None:  # <4>
     popper = LoadablePicker([1])
     assert isinstance(popper, LoadableRandomPicker)
 
+
 def test_isinstance_not() -> None:  # <5>
     popper = SimplePicker([1])
     assert not isinstance(popper, LoadableRandomPicker)
-

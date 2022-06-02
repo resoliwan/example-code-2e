@@ -43,7 +43,7 @@ class WilyDict(dict):
         self.__next_value = 0
 
     def __missing__(self, key):
-        if key.startswith('__') and key.endswith('__'):
+        if key.startswith("__") and key.endswith("__"):
             raise KeyError(key)
         self[key] = value = self.__next_value
         self.__next_value += 1

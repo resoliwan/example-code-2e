@@ -5,7 +5,7 @@
 import sqlite3
 from typing import NamedTuple, Optional, Iterator, Any
 
-DEFAULT_DB_PATH = ':memory:'
+DEFAULT_DB_PATH = ":memory:"
 CONNECTION: Optional[sqlite3.Connection] = None
 
 
@@ -36,10 +36,10 @@ SQLType = str
 TypeMap = dict[type, SQLType]
 
 SQL_TYPES: TypeMap = {
-    int: 'INTEGER',
-    str: 'TEXT',
-    float: 'REAL',
-    bytes: 'BLOB',
+    int: "INTEGER",
+    str: "TEXT",
+    float: "REAL",
+    bytes: "BLOB",
 }
 
 
@@ -53,7 +53,7 @@ FieldMap = dict[str, type]
 
 def check_identifier(name: str) -> None:
     if not name.isidentifier():
-        raise ValueError(f'{name!r} is not an identifier')
+        raise ValueError(f"{name!r} is not an identifier")
 
 
 def connect(db_path: str = DEFAULT_DB_PATH) -> sqlite3.Connection:
@@ -75,19 +75,18 @@ def gen_columns_sql(fields: FieldMap) -> Iterator[ColumnSchema]:
         try:
             sql_type = SQL_TYPES[py_type]
         except KeyError as e:
-            raise ValueError(f'type {py_type!r} is not supported') from e
+            raise ValueError(f"type {py_type!r} is not supported") from e
         yield ColumnSchema(name, sql_type)
 
 
 def make_schema_sql(table_name: str, fields: FieldMap) -> str:
     check_identifier(table_name)
-    pk = 'pk INTEGER PRIMARY KEY,'
-    spcs = ' ' * 4
-    columns = ',\n    '.join(
-        f'{field_name} {sql_type}'
-        for field_name, sql_type in gen_columns_sql(fields)
+    pk = "pk INTEGER PRIMARY KEY,"
+    spcs = " " * 4
+    columns = ",\n    ".join(
+        f"{field_name} {sql_type}" for field_name, sql_type in gen_columns_sql(fields)
     )
-    return f'CREATE TABLE {table_name} (\n{spcs}{pk}\n{spcs}{columns}\n)'
+    return f"CREATE TABLE {table_name} (\n{spcs}{pk}\n{spcs}{columns}\n)"
 
 
 def create_table(table_name: str, fields: FieldMap) -> None:
@@ -98,8 +97,8 @@ def create_table(table_name: str, fields: FieldMap) -> None:
 def read_columns_sql(table_name: str) -> list[ColumnSchema]:
     check_identifier(table_name)
     con = get_connection()
-    rows = con.execute(f'PRAGMA table_info({table_name!r})')
-    return [ColumnSchema(r['name'], r['type']) for r in rows]
+    rows = con.execute(f"PRAGMA table_info({table_name!r})")
+    return [ColumnSchema(r["name"], r["type"]) for r in rows]
 
 
 def valid_table(table_name: str, fields: FieldMap) -> bool:
@@ -118,8 +117,8 @@ def ensure_table(table_name: str, fields: FieldMap) -> None:
 def insert_record(table_name: str, data: dict[str, Any]) -> int:
     check_identifier(table_name)
     con = get_connection()
-    placeholders = ', '.join(['?'] * len(data))
-    sql = f'INSERT INTO {table_name} VALUES (NULL, {placeholders})'
+    placeholders = ", ".join(["?"] * len(data))
+    sql = f"INSERT INTO {table_name} VALUES (NULL, {placeholders})"
     cursor = con.execute(sql, tuple(data.values()))
     pk = cursor.lastrowid
     con.commit()
@@ -130,7 +129,7 @@ def insert_record(table_name: str, data: dict[str, Any]) -> int:
 def fetch_record(table_name: str, pk: int) -> sqlite3.Row:
     check_identifier(table_name)
     con = get_connection()
-    sql = f'SELECT * FROM {table_name} WHERE pk = ? LIMIT 2'
+    sql = f"SELECT * FROM {table_name} WHERE pk = ? LIMIT 2"
     result = list(con.execute(sql, (pk,)))
     if len(result) == 0:
         raise NoSuchRecord(pk)
@@ -145,10 +144,10 @@ def update_record(
 ) -> tuple[str, tuple[Any, ...]]:
     check_identifier(table_name)
     con = get_connection()
-    names = ', '.join(data.keys())
-    placeholders = ', '.join(['?'] * len(data))
+    names = ", ".join(data.keys())
+    placeholders = ", ".join(["?"] * len(data))
     values = tuple(data.values()) + (pk,)
-    sql = f'UPDATE {table_name} SET ({names}) = ({placeholders}) WHERE pk = ?'
+    sql = f"UPDATE {table_name} SET ({names}) = ({placeholders}) WHERE pk = ?"
     con.execute(sql, values)
     con.commit()
     return sql, values
@@ -157,5 +156,5 @@ def update_record(
 def delete_record(table_name: str, pk: int) -> sqlite3.Cursor:
     con = get_connection()
     check_identifier(table_name)
-    sql = f'DELETE FROM {table_name} WHERE pk = ?'
+    sql = f"DELETE FROM {table_name} WHERE pk = ?"
     return con.execute(sql, (pk,))

@@ -9,27 +9,28 @@ from charindex import InvertedIndex
 
 index = {}
 
-@route('/')
+
+@route("/")
 def form():
-    return static_file('form.html', root='static/')
+    return static_file("form.html", root="static/")
 
 
-@route('/search')
+@route("/search")
 def search():
-    query = request.query['q']
+    query = request.query["q"]
     chars = index.search(query)
     results = []
     for char in chars:
         name = unicodedata.name(char)
-        results.append({'char': char, 'name': name})
-    return json.dumps(results).encode('UTF-8')
+        results.append({"char": char, "name": name})
+    return json.dumps(results).encode("UTF-8")
 
 
 def main(port):
     global index
     index = InvertedIndex()
-    run(host='localhost', port=port, debug=True)
+    run(host="localhost", port=port, debug=True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(8000)

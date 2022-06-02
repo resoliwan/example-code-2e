@@ -28,7 +28,7 @@ class TransformDict(MutableMapping):
     {'Foo'}
     """
 
-    __slots__ = ('_transform', '_original', '_data')
+    __slots__ = ("_transform", "_original", "_data")
 
     def __init__(self, transform, init_dict=None, **kwargs):
         """Create a new TransformDict with the given *transform* function.
@@ -36,8 +36,7 @@ class TransformDict(MutableMapping):
         dict constructor.
         """
         if not callable(transform):
-            raise TypeError(
-                f'expected a callable, got {transform.__class__!r}')
+            raise TypeError(f"expected a callable, got {transform.__class__!r}")
         self._transform = transform
         # transformed => original
         self._original = {}
@@ -96,8 +95,8 @@ class TransformDict(MutableMapping):
 
     def pop(self, key, default=_sentinel):
         """D.pop(k[,d]) -> v, remove key and return corresponding value.
-           If key is not found, d is returned if given, otherwise
-           KeyError is raised.
+        If key is not found, d is returned if given, otherwise
+        KeyError is raised.
         """
         transformed = self._transform(key)
         if default is _sentinel:
@@ -109,7 +108,7 @@ class TransformDict(MutableMapping):
 
     def popitem(self):
         """D.popitem() -> (k, v), remove and return some (key, value) pair
-           as a 2-tuple; but raise KeyError if D is empty.
+        as a 2-tuple; but raise KeyError if D is empty.
         """
         transformed, value = self._data.popitem()
         return self._original.pop(transformed), value
@@ -137,4 +136,4 @@ class TransformDict(MutableMapping):
         except TypeError:
             # Some keys are unhashable, fall back on .items()
             equiv = list(self.items())
-        return f'{self.__class__.__name__}({self._transform!r}, {equiv!r})'
+        return f"{self.__class__.__name__}({self._transform!r}, {equiv!r})"

@@ -70,10 +70,11 @@ of a `Movie` object::
 from collections.abc import Callable  # <1>
 from typing import Any, NoReturn, get_type_hints
 
+
 class Field:
     def __init__(self, name: str, constructor: Callable) -> None:  # <2>
         if not callable(constructor) or constructor is type(None):
-            raise TypeError(f'{name!r} type hint must be callable')
+            raise TypeError(f"{name!r} type hint must be callable")
         self.name = name
         self.constructor = constructor
 
@@ -85,16 +86,14 @@ class Field:
                 value = self.constructor(value)  # <5>
             except (TypeError, ValueError) as e:
                 type_name = self.constructor.__name__
-                msg = (
-                    f'{value!r} is not compatible with {self.name}:{type_name}'
-                )
+                msg = f"{value!r} is not compatible with {self.name}:{type_name}"
                 raise TypeError(msg) from e
         instance.__dict__[self.name] = value  # <6>
 
 
 # tag::CHECKED_DECORATOR[]
 def checked(cls: type) -> type:  # <1>
-    for name, constructor in _fields(cls).items():    # <2>
+    for name, constructor in _fields(cls).items():  # <2>
         setattr(cls, name, Field(name, constructor))  # <3>
 
     cls._fields = classmethod(_fields)  # type: ignore  # <4>
@@ -110,11 +109,14 @@ def checked(cls: type) -> type:  # <1>
         setattr(cls, method.__name__, method)
 
     return cls  # <7>
+
+
 # end::CHECKED_DECORATOR[]
 
 # tag::CHECKED_METHODS[]
 def _fields(cls: type) -> dict[str, type]:
     return get_type_hints(cls)
+
 
 def __init__(self: Any, **kwargs: Any) -> None:
     for name in self._fields():
@@ -122,6 +124,7 @@ def __init__(self: Any, **kwargs: Any) -> None:
         setattr(self, name, value)
     if kwargs:
         self.__flag_unknown_attrs(*kwargs)
+
 
 def __setattr__(self: Any, name: str, value: Any) -> None:
     if name in self._fields():
@@ -131,11 +134,13 @@ def __setattr__(self: Any, name: str, value: Any) -> None:
     else:
         self.__flag_unknown_attrs(name)
 
+
 def __flag_unknown_attrs(self: Any, *names: str) -> NoReturn:
-    plural = 's' if len(names) > 1 else ''
-    extra = ', '.join(f'{name!r}' for name in names)
+    plural = "s" if len(names) > 1 else ""
+    extra = ", ".join(f"{name!r}" for name in names)
     cls_name = repr(self.__class__.__name__)
-    raise AttributeError(f'{cls_name} has no attribute{plural} {extra}')
+    raise AttributeError(f"{cls_name} has no attribute{plural} {extra}")
+
 
 def _asdict(self: Any) -> dict[str, Any]:
     return {
@@ -144,9 +149,10 @@ def _asdict(self: Any) -> dict[str, Any]:
         if isinstance(attr, Field)
     }
 
+
 def __repr__(self: Any) -> str:
-    kwargs = ', '.join(
-        f'{key}={value!r}' for key, value in self._asdict().items()
-    )
-    return f'{self.__class__.__name__}({kwargs})'
+    kwargs = ", ".join(f"{key}={value!r}" for key, value in self._asdict().items())
+    return f"{self.__class__.__name__}({kwargs})"
+
+
 # end::CHECKED_METHODS[]

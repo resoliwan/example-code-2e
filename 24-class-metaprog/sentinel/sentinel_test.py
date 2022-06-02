@@ -10,11 +10,11 @@ class PlainSentinel(Sentinel):
 
 
 class SentinelCustomRepr(Sentinel):
-    repr = '***SentinelRepr***'
+    repr = "***SentinelRepr***"
 
 
 def test_repr():
-    assert repr(PlainSentinel) == 'PlainSentinel'
+    assert repr(PlainSentinel) == "PlainSentinel"
 
 
 def test_cannot_instantiate():
@@ -25,7 +25,7 @@ def test_cannot_instantiate():
 
 
 def test_custom_repr():
-    assert repr(SentinelCustomRepr) == '***SentinelRepr***'
+    assert repr(SentinelCustomRepr) == "***SentinelRepr***"
 
 
 def test_pickle():
@@ -35,7 +35,7 @@ def test_pickle():
 
 
 def test_sentinel_comes_ready_to_use():
-    assert repr(Sentinel) == 'Sentinel'
+    assert repr(Sentinel) == "Sentinel"
     s = pickle.dumps(Sentinel)
     ps = pickle.loads(s)
     assert ps is Sentinel

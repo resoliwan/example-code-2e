@@ -22,29 +22,33 @@ Expression = Union[Atom, list]
 
 ################ Parsing: parse, tokenize, and read_from_tokens
 
+
 def parse(program: str) -> Expression:
     "Read a Scheme expression from a string."
     return read_from_tokens(tokenize(program))
 
+
 def tokenize(s: str) -> list[str]:
     "Convert a string into a list of tokens."
-    return s.replace('(', ' ( ').replace(')', ' ) ').split()
+    return s.replace("(", " ( ").replace(")", " ) ").split()
+
 
 def read_from_tokens(tokens: list[str]) -> Expression:
     "Read an expression from a sequence of tokens."
     if len(tokens) == 0:
-        raise SyntaxError('unexpected EOF while reading')
+        raise SyntaxError("unexpected EOF while reading")
     token = tokens.pop(0)
-    if '(' == token:
+    if "(" == token:
         exp = []
-        while tokens[0] != ')':
+        while tokens[0] != ")":
             exp.append(read_from_tokens(tokens))
         tokens.pop(0)  # discard ')'
         return exp
-    elif ')' == token:
-        raise SyntaxError('unexpected )')
+    elif ")" == token:
+        raise SyntaxError("unexpected )")
     else:
         return parse_atom(token)
+
 
 def parse_atom(token: str) -> Atom:
     "Numbers become numbers; every other token is a symbol."
@@ -58,6 +62,7 @@ def parse_atom(token: str) -> Atom:
 
 
 ################ Global Environment
+
 
 class Environment(ChainMap[Symbol, Any]):
     "A ChainMap that allows changing an item in-place."
@@ -74,48 +79,51 @@ class Environment(ChainMap[Symbol, Any]):
 def standard_env() -> Environment:
     "An environment with some Scheme standard procedures."
     env = Environment()
-    env.update(vars(math))   # sin, cos, sqrt, pi, ...
-    env.update({
-            '+': op.add,
-            '-': op.sub,
-            '*': op.mul,
-            '/': op.truediv,
-            'quotient': op.floordiv,
-            '>': op.gt,
-            '<': op.lt,
-            '>=': op.ge,
-            '<=': op.le,
-            '=': op.eq,
-            'abs': abs,
-            'append': lambda *args: list(chain(*args)),
-            'apply': lambda proc, args: proc(*args),
-            'begin': lambda *x: x[-1],
-            'car': lambda x: x[0],
-            'cdr': lambda x: x[1:],
-            'cons': lambda x, y: [x] + y,
-            'display': lambda x: print(lispstr(x)),
-            'eq?': op.is_,
-            'equal?': op.eq,
-            'filter': lambda *args: list(filter(*args)),
-            'length': len,
-            'list': lambda *x: list(x),
-            'list?': lambda x: isinstance(x, list),
-            'map': lambda *args: list(map(*args)),
-            'max': max,
-            'min': min,
-            'not': op.not_,
-            'null?': lambda x: x == [],
-            'number?': lambda x: isinstance(x, (int, float)),
-            'procedure?': callable,
-            'round': round,
-            'symbol?': lambda x: isinstance(x, Symbol),
-    })
+    env.update(vars(math))  # sin, cos, sqrt, pi, ...
+    env.update(
+        {
+            "+": op.add,
+            "-": op.sub,
+            "*": op.mul,
+            "/": op.truediv,
+            "quotient": op.floordiv,
+            ">": op.gt,
+            "<": op.lt,
+            ">=": op.ge,
+            "<=": op.le,
+            "=": op.eq,
+            "abs": abs,
+            "append": lambda *args: list(chain(*args)),
+            "apply": lambda proc, args: proc(*args),
+            "begin": lambda *x: x[-1],
+            "car": lambda x: x[0],
+            "cdr": lambda x: x[1:],
+            "cons": lambda x, y: [x] + y,
+            "display": lambda x: print(lispstr(x)),
+            "eq?": op.is_,
+            "equal?": op.eq,
+            "filter": lambda *args: list(filter(*args)),
+            "length": len,
+            "list": lambda *x: list(x),
+            "list?": lambda x: isinstance(x, list),
+            "map": lambda *args: list(map(*args)),
+            "max": max,
+            "min": min,
+            "not": op.not_,
+            "null?": lambda x: x == [],
+            "number?": lambda x: isinstance(x, (int, float)),
+            "procedure?": callable,
+            "round": round,
+            "symbol?": lambda x: isinstance(x, Symbol),
+        }
+    )
     return env
 
 
 ################ Interaction: A REPL
 
-def repl(prompt: str = 'lis.py> ') -> NoReturn:
+
+def repl(prompt: str = "lis.py> ") -> NoReturn:
     "A prompt-read-eval-print loop."
     global_env = Environment({}, standard_env())
     while True:
@@ -124,37 +132,39 @@ def repl(prompt: str = 'lis.py> ') -> NoReturn:
         if val is not None:
             print(lispstr(val))
 
+
 def lispstr(exp: object) -> str:
     "Convert a Python object back into a Lisp-readable string."
     if isinstance(exp, list):
-        return '(' + ' '.join(map(lispstr, exp)) + ')'
+        return "(" + " ".join(map(lispstr, exp)) + ")"
     else:
         return str(exp)
 
 
 ################ Evaluator
 
+
 def evaluate(exp: Expression, env: Environment) -> Any:
     "Evaluate an expression in an environment."
-    if isinstance(exp, Symbol):      # variable reference
+    if isinstance(exp, Symbol):  # variable reference
         return env[exp]
     elif not isinstance(exp, list):  # constant literal
         return exp
-    elif exp[0] == 'quote':          # (quote exp)
+    elif exp[0] == "quote":  # (quote exp)
         (_, x) = exp
         return x
-    elif exp[0] == 'if':             # (if test conseq alt)
+    elif exp[0] == "if":  # (if test conseq alt)
         (_, test, consequence, alternative) = exp
         if evaluate(test, env):
             return evaluate(consequence, env)
         else:
             return evaluate(alternative, env)
-    elif exp[0] == 'lambda':         # (lambda (parm…) body…)
+    elif exp[0] == "lambda":  # (lambda (parm…) body…)
         (_, parms, *body) = exp
         if not isinstance(parms, list):
             raise SyntaxError(lispstr(exp))
         return Procedure(parms, body, env)
-    elif exp[0] == 'define':
+    elif exp[0] == "define":
         (_, name_exp, *rest) = exp
         if isinstance(name_exp, Symbol):  # (define name exp)
             value_exp = rest[0]
@@ -162,10 +172,10 @@ def evaluate(exp: Expression, env: Environment) -> Any:
         else:  # (define (name parm…) body…)
             name, *parms = name_exp
             env[name] = Procedure(parms, rest, env)
-    elif exp[0] == 'set!':
+    elif exp[0] == "set!":
         (_, var, value_exp) = exp
         env.change(var, evaluate(value_exp, env))
-    else:                          # (proc arg…)
+    else:  # (proc arg…)
         (func_exp, *args) = exp
         proc = evaluate(func_exp, env)
         args = [evaluate(arg, env) for arg in args]
@@ -175,9 +185,7 @@ def evaluate(exp: Expression, env: Environment) -> Any:
 class Procedure:
     "A user-defined Scheme procedure."
 
-    def __init__(
-        self, parms: list[Symbol], body: list[Expression], env: Environment
-    ):
+    def __init__(self, parms: list[Symbol], body: list[Expression], env: Environment):
         self.parms = parms
         self.body = body
         self.env = env
@@ -192,6 +200,7 @@ class Procedure:
 
 ################ command-line interface
 
+
 def run(source: str) -> Any:
     global_env = Environment({}, standard_env())
     tokens = tokenize(source)
@@ -200,6 +209,7 @@ def run(source: str) -> Any:
         result = evaluate(exp, global_env)
     return result
 
+
 def main(args: list[str]) -> None:
     if len(args) == 1:
         with open(args[0]) as fp:
@@ -207,6 +217,8 @@ def main(args: list[str]) -> None:
     else:
         repl()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import sys
+
     main(sys.argv[1:])

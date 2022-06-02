@@ -54,4 +54,5 @@ def best_promo(order: Order) -> Decimal:
     """Compute the best discount available"""
     return max(promo(order) for promo in promos)
 
+
 # end::STRATEGY_BEST3[]

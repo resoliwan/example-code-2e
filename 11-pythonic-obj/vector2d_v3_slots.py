@@ -88,11 +88,11 @@ import math
 
 # tag::VECTOR2D_V3_SLOTS[]
 class Vector2d:
-    __match_args__ = ('x', 'y')  # <1>
-    __slots__ = ('__x', '__y')  # <2>
+    __match_args__ = ("x", "y")  # <1>
+    __slots__ = ("__x", "__y")  # <2>
 
-    typecode = 'd'
-# end::VECTOR2D_V3_SLOTS[]
+    typecode = "d"
+    # end::VECTOR2D_V3_SLOTS[]
 
     def __init__(self, x, y):
         self.__x = float(x)
@@ -111,14 +111,13 @@ class Vector2d:
 
     def __repr__(self):
         class_name = type(self).__name__
-        return '{}({!r}, {!r})'.format(class_name, *self)
+        return "{}({!r}, {!r})".format(class_name, *self)
 
     def __str__(self):
         return str(tuple(self))
 
     def __bytes__(self):
-        return (bytes([ord(self.typecode)]) +
-                bytes(array(self.typecode, self)))
+        return bytes([ord(self.typecode)]) + bytes(array(self.typecode, self))
 
     def __eq__(self, other):
         return tuple(self) == tuple(other)
@@ -135,14 +134,14 @@ class Vector2d:
     def angle(self):
         return math.atan2(self.y, self.x)
 
-    def __format__(self, fmt_spec=''):
-        if fmt_spec.endswith('p'):
+    def __format__(self, fmt_spec=""):
+        if fmt_spec.endswith("p"):
             fmt_spec = fmt_spec[:-1]
             coords = (abs(self), self.angle())
-            outer_fmt = '<{}, {}>'
+            outer_fmt = "<{}, {}>"
         else:
             coords = self
-            outer_fmt = '({}, {})'
+            outer_fmt = "({}, {})"
         components = (format(c, fmt_spec) for c in coords)
         return outer_fmt.format(*components)
 

@@ -42,9 +42,11 @@ def is_prime(n: int) -> bool:
         if n % i == 0:
             return False
     return True
+
+
 # end::IS_PRIME[]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     for n, prime in PRIME_FIXTURE:
         prime_res = is_prime(n)

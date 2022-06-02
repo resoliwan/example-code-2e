@@ -11,14 +11,16 @@ def sub_tree(cls):
             yield sub_sub_cls.__name__, 2
             for sub_sub_sub_cls in sub_sub_cls.__subclasses__():
                 yield sub_sub_sub_cls.__name__, 3
+
+
 # end::SUB_TREE[]
 
 
 def display(cls):
     for cls_name, level in tree(cls):
-        indent = ' ' * 4 * level
-        print(f'{indent}{cls_name}')
+        indent = " " * 4 * level
+        print(f"{indent}{cls_name}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     display(BaseException)

@@ -6,7 +6,6 @@ from tombola import Tombola
 
 
 class BingoCage(Tombola):  # <1>
-
     def __init__(self, items):
         self._randomizer = random.SystemRandom()  # <2>
         self._items = []
@@ -20,9 +19,10 @@ class BingoCage(Tombola):  # <1>
         try:
             return self._items.pop()
         except IndexError:
-            raise LookupError('pick from empty BingoCage')
+            raise LookupError("pick from empty BingoCage")
 
     def __call__(self):  # <7>
         self.pick()
+
 
 # END TOMBOLA_BINGO

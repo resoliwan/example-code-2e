@@ -59,7 +59,6 @@ import collections
 
 
 class StrKeyDict(collections.UserDict):  # <1>
-
     def __missing__(self, key):  # <2>
         if isinstance(key, str):
             raise KeyError(key)
@@ -69,6 +68,7 @@ class StrKeyDict(collections.UserDict):  # <1>
         return str(key) in self.data  # <3>
 
     def __setitem__(self, key, item):
-        self.data[str(key)] = item   # <4>
+        self.data[str(key)] = item  # <4>
+
 
 # end::STRKEYDICT[]

@@ -21,28 +21,25 @@ this file might be overwritten without notice.
 from classic_strategy import Customer, Promotion
 from typing import Union
 
-
-
 class LineItem(object):
-
     def __init__(self, product: str, quantity: int, price: float) -> None: ...
     def total(self) -> float: ...
 
 class Order(object):
-
-    def __init__(self, customer: Customer, cart: List[LineItem], promotion: Union[BulkItemPromo, FidelityPromo, LargeOrderPromo]) -> None: ...
+    def __init__(
+        self,
+        customer: Customer,
+        cart: List[LineItem],
+        promotion: Union[BulkItemPromo, FidelityPromo, LargeOrderPromo],
+    ) -> None: ...
     def total(self) -> float: ...
     def due(self) -> float: ...
 
 class FidelityPromo(Promotion):
-
     def discount(self, order: Order) -> float: ...
 
 class BulkItemPromo(Promotion):
-
     def discount(self, order: Order) -> float: ...
 
 class LargeOrderPromo(Promotion):
-
     def discount(self, order: Order) -> float: ...
-

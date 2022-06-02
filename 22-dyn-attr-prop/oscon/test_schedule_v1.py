@@ -19,6 +19,6 @@ def test_record_attr_access():
 
 
 def test_venue_record(records):
-    venue = records['venue.1469']
+    venue = records["venue.1469"]
     assert venue.serial == 1469
-    assert venue.name == 'Exhibit Hall C'
+    assert venue.name == "Exhibit Hall C"

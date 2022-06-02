@@ -12,8 +12,11 @@ This version has a field with a default value::
 # tag::COORDINATE[]
 from typing import NamedTuple
 
+
 class Coordinate(NamedTuple):
-    lat: float                # <1>
+    lat: float  # <1>
     lon: float
-    reference: str = 'WGS84'  # <2>
+    reference: str = "WGS84"  # <2>
+
+
 # end::COORDINATE[]

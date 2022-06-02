@@ -1,4 +1,3 @@
-
 """
 Could this be valid Python?
 
@@ -31,12 +30,12 @@ AM = -2
 PM = -1
 
 for n in range(10):
-    globals()[f'O{n}'] = n
+    globals()[f"O{n}"] = n
 OO = 0
 
-@functools.total_ordering
-class T():
 
+@functools.total_ordering
+class T:
     def __init__(self, arg):
         if isinstance(arg, slice):
             h = arg.start or 0
@@ -58,20 +57,20 @@ class T():
         return cls(arg)
 
     def __getitem__(self, arg):
-        return(type(self)(arg))
+        return type(self)(arg)
 
     def __repr__(self):
         h, m, s = self.h, self.m, self.s or None
         if m == 0:
-            m = f'OO'
+            m = f"OO"
         elif m < 10:
-            m = f'O{m}'
-        s = '' if s is None else s
+            m = f"O{m}"
+        s = "" if s is None else s
         if self.pm is None:
-            pm = ''
+            pm = ""
         else:
-            pm = ':' + ('AM', 'PM')[self.pm]
-        return f'T[{h}:{m}{s}{pm}]'
+            pm = ":" + ("AM", "PM")[self.pm]
+        return f"T[{h}:{m}{s}{pm}]"
 
     def __iter__(self):
         yield from (self.h, self.m, self.s)
@@ -88,4 +87,4 @@ class T():
         T[11:20]
         """
         if isinstance(other, int):
-            return self[self.h:self.m + other:self.pm]
+            return self[self.h : self.m + other : self.pm]

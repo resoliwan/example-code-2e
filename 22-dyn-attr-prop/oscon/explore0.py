@@ -42,7 +42,7 @@ from collections import abc
 
 class FrozenJSON:
     """A read-only façade for navigating a JSON-like object
-       using attribute notation
+    using attribute notation
     """
 
     def __init__(self, mapping):
@@ -65,4 +65,6 @@ class FrozenJSON:
             return [cls.build(item) for item in obj]
         else:  # <9>
             return obj
+
+
 # end::EXPLORE0[]
