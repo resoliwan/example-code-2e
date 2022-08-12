@@ -17,3 +17,7 @@ print(slice(-3).indices(5))
 t = (1, 2, [3, 4])
 t[2] += [5, 6]
 print(t)
+
+import dis
+
+dis.dis("a")
