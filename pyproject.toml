@@ -21,12 +21,14 @@ authors = ["resoliwan <resoliwan@naver.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pipenv = "^2022.8.15"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"
 mypy = "^0.950"
 black = "^22.3.0"
 pylint = "^2.13.9"
+pytest = "^7.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

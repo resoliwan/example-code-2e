@@ -21,20 +21,20 @@ class Solution:
 
     def searchInsert2(self, nums, target):
         low = 0
-        high = len(nums)
-        mid = low + math.ceil((low + high) / 2)
+        high = len(nums) - 1
 
-        while low < mid < high:
-            mid = low + math.ceil((low + high) / 2)
+        while low <= high:
+            mid = math.floor((low + high) / 2)
+
             midval = nums[mid]
             if midval == target:
-                break
-            elif midval < target:
-                low = mid
+                return mid
             elif midval > target:
-                high = mid
+                high = mid - 1
+            else:
+                low = mid + 1
 
-        return mid
+        return low
 
 
 def test_search_insert1():
@@ -47,3 +47,6 @@ def test_search_insert1():
         # assert t["output"] == s.searchInsert(t["nums"], t["target"])
         # assert t["output"] == s.searchInsert1(t["nums"], t["target"])
         assert t["output"] == s.searchInsert2(t["nums"], t["target"])
+
+
+test_search_insert1()
