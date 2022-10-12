@@ -2625,6 +2625,8 @@ SimplePicker	13-protocol-abc/typing/randompickload_test.py	/^class SimplePicker:
 SimplePopper	15-more-types/protocol/random/randompop_test.py	/^class SimplePopper:$/;"	c
 SimpleTemplate	21-async/mojifinder/bottle.py	/^class SimpleTemplate(BaseTemplate):$/;"	c
 SlowHTTPRequestHandler	20-executors/getflags/slow_server.py	/^class SlowHTTPRequestHandler(SimpleHTTPRequestHandler):$/;"	c
+Solution	leetcode/test_1_6_merge_sorted_array.py	/^class Solution:$/;"	c
+Solution	leetcode/test_1_7_merge_without_space.py	/^class Solution:$/;"	c
 Solution	leetcode/test_contain_duplicate.py	/^class Solution:$/;"	c
 Solution	leetcode/test_remove_duplicate_sorted_array.py	/^class Solution(object):$/;"	c
 Solution	leetcode/test_search_insertion_position.py	/^class Solution:$/;"	c
@@ -3575,7 +3577,6 @@ _unquotesplicing	18-with-match/lispy/original/lispy.py	/^_quasiquote, _unquote, 
 _upper	03-dict-set/missing.py	/^def _upper(x):$/;"	f
 _upper	14-inheritance/uppermixin.py	/^def _upper(key):  # <1>$/;"	f
 a	02-array-seq/array-seq.py	/^a = np.arange(12)$/;"	v
-a	leetcode/hello.py	/^a = 1$/;"	v
 a	mycode/02-array-seq/test_abc.py	/^a = (10, "abc", (1, 2))$/;"	v
 a	mycode/02-array-seq/test_abc.py	/^a = [1, 2, 3, 4]$/;"	v
 a	mycode/02-array-seq/test_match.py	/^a = 1$/;"	v
@@ -4017,7 +4018,6 @@ averager2	17-it-generator/coroaverager2.py	/^def averager2(verbose: bool = False
 b	05-data-classes/meaning/demo_dc.py	/^    b: float = 1.1  # <2>$/;"	v	class:DemoDataClass	typeref:typename:float
 b	05-data-classes/meaning/demo_nt.py	/^    b: float = 1.1  # <2>$/;"	v	class:DemoNTClass	typeref:typename:float
 b	05-data-classes/meaning/demo_plain.py	/^    b: float = 1.1  # <2>$/;"	v	class:DemoPlainClass	typeref:typename:float
-b	leetcode/hello.py	/^b = 1$/;"	v
 b	mycode/02-array-seq/test_abc.py	/^b = (10, "abc", [1, 2])$/;"	v
 b	mycode/02-array-seq/test_abc.py	/^b = [5, 6, 7, 8]$/;"	v
 b	mycode/02-array-seq/test_unpacking.py	/^a, b = arr$/;"	v
@@ -4433,7 +4433,6 @@ bytes	21-async/mojifinder/bottle.py	/^        bytes = str$/;"	v
 c	05-data-classes/meaning/demo_dc.py	/^    c = "spam"  # <3>$/;"	v	class:DemoDataClass
 c	05-data-classes/meaning/demo_nt.py	/^    c = "spam"  # <3>$/;"	v	class:DemoNTClass
 c	05-data-classes/meaning/demo_plain.py	/^    c = "spam"  # <3>$/;"	v	class:DemoPlainClass
-c	leetcode/hello.py	/^c = 1$/;"	v
 c	mycode/02-array-seq/test_abc.py	/^c = [(a_e, b_e) for a_e in a for b_e in b]$/;"	v
 cached_property	21-async/mojifinder/bottle.py	/^class cached_property(object):$/;"	c
 call	21-async/mojifinder/bottle.py	/^    def call(self):$/;"	m	class:Route
@@ -5051,6 +5050,7 @@ code	21-async/mojifinder/bottle.py	/^    def code(self):$/;"	m	class:SimpleTempl
 codes	02-array-seq/array-seq.py	/^codes = []$/;"	v
 codes	02-array-seq/array-seq.py	/^codes = [ord(symbol) for symbol in symbols]$/;"	v
 codes	02-array-seq/array-seq.py	/^codes = [ord(x) for x in x]$/;"	v
+codes	03-dict-set/me_test.py	/^codes = [("key1", "val1"), ("key2", "val2")]$/;"	v
 codes	mycode/02-array-seq/test_abc.py	/^codes = [ord(s) for s in symbols]$/;"	v
 col_int	15-more-types/collections_variance.py	/^col_int = seq_int$/;"	v
 color	24-class-metaprog/metabunch/from3.6/bunch_test.py	/^    color = "gray"$/;"	v	class:Point
@@ -5638,6 +5638,7 @@ description	24-class-metaprog/bulkfood/bulkfood_v6.py	/^    description = model.
 description	24-class-metaprog/bulkfood/bulkfood_v7.py	/^    description = model.NonBlank()$/;"	v	class:LineItem
 description	24-class-metaprog/bulkfood/bulkfood_v8.py	/^    description = model.NonBlank()$/;"	v	class:LineItem
 dewinize	04-text-byte/simplify.py	/^def dewinize(txt):$/;"	f
+dict	03-dict-set/me_test.py	/^dict = {}$/;"	v
 disallow_incomplete_defs	08-def-type-hints/mypy.ini	/^disallow_incomplete_defs = True$/;"	k	section:mypy
 discount	10-dp-1class-func/classic_strategy.py	/^    def discount(self, order: Order) -> Decimal:$/;"	m	class:BulkItemPromo	typeref:typename:Decimal
 discount	10-dp-1class-func/classic_strategy.py	/^    def discount(self, order: Order) -> Decimal:$/;"	m	class:FidelityPromo	typeref:typename:Decimal
@@ -6672,6 +6673,12 @@ member	22-dyn-attr-prop/blackknight.py	/^    def member(self):$/;"	m	class:Black
 memv	02-array-seq/array-seq.py	/^memv = memoryview(numbers)$/;"	v
 memv_oct	02-array-seq/array-seq.py	/^memv_oct = memv.cast("B")$/;"	v
 merge	21-async/mojifinder/bottle.py	/^    def merge(self, routes):$/;"	m	class:Bottle
+merge	leetcode/test_1_6_merge_sorted_array.py	/^    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:$/;"	m	class:Solution	typeref:typename:None
+merge	leetcode/test_1_7_merge_without_space.py	/^    def merge(self, arr1, arr2, n, m):$/;"	m	class:Solution
+merge1	leetcode/test_1_6_merge_sorted_array.py	/^    def merge1(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:$/;"	m	class:Solution	typeref:typename:None
+merge2	leetcode/test_1_6_merge_sorted_array.py	/^    def merge2(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:$/;"	m	class:Solution	typeref:typename:None
+merge2	leetcode/test_1_7_merge_without_space.py	/^    def merge2(self, arr1, arr2, n, m):$/;"	m	class:Solution
+merge3	leetcode/test_1_7_merge_without_space.py	/^    def merge3(self, nums1: List[int], nums2: List[int], m: int, n: int) -> None:$/;"	m	class:Solution	typeref:typename:None
 message	11-pythonic-obj/private/expose.py	/^message = Confidential('top secret text')$/;"	v
 message	11-pythonic-obj/private/leakprivate.py	/^message = Confidential('top secret text')$/;"	v
 message	11-pythonic-obj/private/no_respect.py	/^message = Confidential('top secret text')$/;"	v
@@ -10242,6 +10249,7 @@ test_closure_with_change	02-array-seq/lispy/py3.10/examples_test.py	/^def test_c
 test_closure_with_change	02-array-seq/lispy/py3.9/examples_test.py	/^def test_closure_with_change(capsys):$/;"	f
 test_closure_with_change	18-with-match/lispy/py3.10/examples_test.py	/^def test_closure_with_change(capsys):$/;"	f
 test_closure_with_change	18-with-match/lispy/py3.9/examples_test.py	/^def test_closure_with_change(capsys):$/;"	f
+test_code	leetcode/test_1_6_merge_sorted_array.py	/^def test_code():$/;"	f
 test_columnize_7_in_2	08-def-type-hints/columnize_test.py	/^def test_columnize_7_in_2():$/;"	f
 test_columnize_7_in_5	08-def-type-hints/columnize_test.py	/^def test_columnize_7_in_5():$/;"	f
 test_columnize_8_in_2	08-def-type-hints/columnize_test.py	/^def test_columnize_8_in_2():$/;"	f
@@ -10437,6 +10445,10 @@ test_max_empty_iterable_with_default	15-more-types/protocol/mymax/mymax_test.py	
 test_max_iterable	15-more-types/protocol/mymax/mymax_test.py	/^def test_max_iterable(iterable, expected):$/;"	f
 test_max_iterable_with_key	15-more-types/protocol/mymax/mymax_test.py	/^def test_max_iterable_with_key($/;"	f	typeref:typename:None
 test_max_single_arg_not_iterable	15-more-types/protocol/mymax/mymax_test.py	/^def test_max_single_arg_not_iterable():$/;"	f
+test_merge1	leetcode/test_1_6_merge_sorted_array.py	/^def test_merge1():$/;"	f
+test_merge1	leetcode/test_1_7_merge_without_space.py	/^def test_merge1():$/;"	f
+test_merge2	leetcode/test_1_6_merge_sorted_array.py	/^def test_merge2():$/;"	f
+test_merge2	leetcode/test_1_7_merge_without_space.py	/^def test_merge2():$/;"	f
 test_newton	02-array-seq/lispy/py3.10/examples_test.py	/^def test_newton():$/;"	f
 test_newton	18-with-match/lispy/py3.10/examples_test.py	/^def test_newton():$/;"	f
 test_newton	18-with-match/lispy/py3.9/examples_test.py	/^def test_newton():$/;"	f
@@ -10478,6 +10490,7 @@ test_show_count	08-def-type-hints/messages/hints_2/messages_test.py	/^def test_s
 test_show_count	08-def-type-hints/messages/no_hints/messages_test.py	/^def test_show_count(qty, expected):$/;"	f
 test_show_count_zero	08-def-type-hints/messages/hints_1/messages_test.py	/^def test_show_count_zero():$/;"	f
 test_show_count_zero	08-def-type-hints/messages/no_hints/messages_test.py	/^def test_show_count_zero():$/;"	f
+test_simple_example_search_insert	leetcode/test_search_insertion_position.py	/^def test_simple_example_search_insert():$/;"	f
 test_slots	24-class-metaprog/metabunch/from3.6/bunch_test.py	/^def test_slots():$/;"	f
 test_slots	24-class-metaprog/metabunch/nutshell3e/bunch_test.py	/^def test_slots():$/;"	f
 test_slots	24-class-metaprog/metabunch/original/bunch_test.py	/^def test_slots():$/;"	f

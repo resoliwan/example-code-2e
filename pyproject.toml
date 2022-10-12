@@ -11,6 +11,8 @@ disable = [
     "wrong-import-order",
     "logging-fstring-interpolation",
     "invalid-name",
+    "pointless-string-statement",
+    "no-self-use",
 ]
 
 [tool.poetry]
