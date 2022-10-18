@@ -2627,6 +2627,7 @@ SimpleTemplate	21-async/mojifinder/bottle.py	/^class SimpleTemplate(BaseTemplate
 SlowHTTPRequestHandler	20-executors/getflags/slow_server.py	/^class SlowHTTPRequestHandler(SimpleHTTPRequestHandler):$/;"	c
 Solution	leetcode/test_1_6_merge_sorted_array.py	/^class Solution:$/;"	c
 Solution	leetcode/test_1_7_merge_without_space.py	/^class Solution:$/;"	c
+Solution	leetcode/test_1_8_pascals_triangle.py	/^class Solution:$/;"	c
 Solution	leetcode/test_contain_duplicate.py	/^class Solution:$/;"	c
 Solution	leetcode/test_remove_duplicate_sorted_array.py	/^class Solution(object):$/;"	c
 Solution	leetcode/test_search_insertion_position.py	/^class Solution:$/;"	c
@@ -5051,6 +5052,7 @@ codes	02-array-seq/array-seq.py	/^codes = []$/;"	v
 codes	02-array-seq/array-seq.py	/^codes = [ord(symbol) for symbol in symbols]$/;"	v
 codes	02-array-seq/array-seq.py	/^codes = [ord(x) for x in x]$/;"	v
 codes	03-dict-set/me_test.py	/^codes = [("key1", "val1"), ("key2", "val2")]$/;"	v
+codes	03-dict-set/me_test.py	/^codes = [("key1", 10), ("key2", 20)]$/;"	v
 codes	mycode/02-array-seq/test_abc.py	/^codes = [ord(s) for s in symbols]$/;"	v
 col_int	15-more-types/collections_variance.py	/^col_int = seq_int$/;"	v
 color	24-class-metaprog/metabunch/from3.6/bunch_test.py	/^    color = "gray"$/;"	v	class:Point
@@ -5100,7 +5102,9 @@ customer_fidelity_1100	10-dp-1class-func/pytypes/classic_strategy_test.py	/^def 
 customer_fidelity_1100	10-dp-1class-func/strategy_param_test.py	/^def customer_fidelity_1100() -> Customer:$/;"	f	typeref:typename:Customer
 customer_fidelity_1100	10-dp-1class-func/strategy_test.py	/^def customer_fidelity_1100() -> Customer:$/;"	f	typeref:typename:Customer
 d1	03-dict-set/dialcodes.py	/^d1 = dict(DIAL_CODES)  # <1>$/;"	v
+d1	03-dict-set/me_test.py	/^d1 = {"x": 1, "y": 1}$/;"	v
 d2	03-dict-set/dialcodes.py	/^d2 = dict(sorted(DIAL_CODES))  # <2>$/;"	v
+d2	03-dict-set/me_test.py	/^d2 = {"y": 2, "z": 2}$/;"	v
 d3	03-dict-set/dialcodes.py	/^d3 = dict(sorted(DIAL_CODES, key=lambda x: x[1]))  # <3>$/;"	v
 daffy	08-def-type-hints/birds/daffy.py	/^daffy = Duck()$/;"	v
 date	05-data-classes/dataclass/resource.py	/^    date: Optional[date] = None  # <4>$/;"	v	class:Resource	typeref:typename:Optional[date]
@@ -5638,7 +5642,8 @@ description	24-class-metaprog/bulkfood/bulkfood_v6.py	/^    description = model.
 description	24-class-metaprog/bulkfood/bulkfood_v7.py	/^    description = model.NonBlank()$/;"	v	class:LineItem
 description	24-class-metaprog/bulkfood/bulkfood_v8.py	/^    description = model.NonBlank()$/;"	v	class:LineItem
 dewinize	04-text-byte/simplify.py	/^def dewinize(txt):$/;"	f
-dict	03-dict-set/me_test.py	/^dict = {}$/;"	v
+dict	03-dict-set/me_test.py	/^dict = {key.upper(): code for key, code in sorted(codes) if code > 10}$/;"	v
+dict	03-dict-set/me_test.py	/^dict = {key: code for key, code in codes}$/;"	v
 disallow_incomplete_defs	08-def-type-hints/mypy.ini	/^disallow_incomplete_defs = True$/;"	k	section:mypy
 discount	10-dp-1class-func/classic_strategy.py	/^    def discount(self, order: Order) -> Decimal:$/;"	m	class:BulkItemPromo	typeref:typename:Decimal
 discount	10-dp-1class-func/classic_strategy.py	/^    def discount(self, order: Order) -> Decimal:$/;"	m	class:FidelityPromo	typeref:typename:Decimal
@@ -5724,6 +5729,7 @@ due	10-dp-1class-func/untyped/strategy_best3.py	/^    def due(self):$/;"	m	class
 due	10-dp-1class-func/untyped/strategy_best4.py	/^    def due(self):$/;"	m	class:Order
 due	10-dp-1class-func/untyped/strategy_param.py	/^    def due(self):$/;"	m	class:Order
 due	10-dp-1class-func/untyped/strategy_param2.py	/^    def due(self):$/;"	m	class:Order
+dump	03-dict-set/me_test.py	/^def dump(**kwargs):$/;"	f
 dump	17-it-generator/isis2json/iso2709.py	/^    def dump(self):$/;"	m	class:IsoRecord
 encoder	21-async/mojifinder/bottle.py	/^            encoder = lambda x: x.encode(response.charset)$/;"	f	member:Bottle._cast	file:
 ensure_table	24-class-metaprog/persistent/dblib.py	/^def ensure_table(table_name: str, fields: FieldMap) -> None:$/;"	f	typeref:typename:None
@@ -6349,6 +6355,9 @@ gen_float_take_complex	15-more-types/gen_contra.py	/^def gen_float_take_complex(
 gen_float_take_float	15-more-types/gen_contra.py	/^def gen_float_take_float() -> Generator[float, float, str]:$/;"	f	typeref:typename:Generator[float,float,str]
 gen_float_take_int	15-more-types/gen_contra.py	/^def gen_float_take_int() -> Generator[float, int, str]:$/;"	f	typeref:typename:Generator[float,int,str]
 general_discount	10-dp-1class-func/strategy_param.py	/^def general_discount(percent: float, order: Order) -> float:$/;"	f	typeref:typename:float
+generate	leetcode/test_1_8_pascals_triangle.py	/^    def generate(self, num_rows: int) -> List[List[int]]:$/;"	m	class:Solution	typeref:typename:List[List[int]]
+generate2	leetcode/test_1_8_pascals_triangle.py	/^    def generate2(self, num_rows: int) -> List[List[int]]:$/;"	m	class:Solution	typeref:typename:List[List[int]]
+generate3	leetcode/test_1_8_pascals_triangle.py	/^    def generate3(self, num_rows: int) -> List[List[int]]:$/;"	m	class:Solution	typeref:typename:List[List[int]]
 geohash	08-def-type-hints/coordinates/coordinates.py	/^def geohash(lat_lon: tuple[float, float]) -> str:  # <2>$/;"	f	typeref:typename:str
 geohash	08-def-type-hints/coordinates/coordinates_named.py	/^def geohash(lat_lon: Coordinate) -> str:$/;"	f	typeref:typename:str
 get	03-dict-set/missing.py	/^    def get(self, key, default=None):$/;"	m	class:DictLikeMappingSub
@@ -10364,6 +10373,7 @@ test_gcd	18-with-match/lispy/py3.10/examples_test.py	/^def test_gcd(capsys):$/;"
 test_gcd	18-with-match/lispy/py3.9/examples_test.py	/^def test_gcd(capsys):$/;"	f
 test_gen_columns_sql	24-class-metaprog/persistent/dblib_test.py	/^def test_gen_columns_sql(fields, expected):$/;"	f
 test_general_discount	10-dp-1class-func/strategy_param_test.py	/^def test_general_discount(customer_fidelity_1100, cart_plain) -> None:$/;"	f	typeref:typename:None
+test_generate1	leetcode/test_1_8_pascals_triangle.py	/^def test_generate1():$/;"	f
 test_geohash_max_precision	08-def-type-hints/coordinates/coordinates_named_test.py	/^def test_geohash_max_precision() -> None:$/;"	f	typeref:typename:None
 test_geohash_max_precision	08-def-type-hints/coordinates/coordinates_test.py	/^def test_geohash_max_precision() -> None:$/;"	f	typeref:typename:None
 test_hello	mycode/01-data-model/test_frenchdeck.py	/^def test_hello():$/;"	f
