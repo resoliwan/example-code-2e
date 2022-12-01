@@ -3,12 +3,8 @@
 # Given an m x n grid of characters board and a string word, return true if word exists in the grid.
 # The word can be constructed from letters of sequentially adjacent cells, where adjacent cells
 # are horizontally or vertically neighboring. The same letter cell may not be used more than once.
-# 시간에서 아웃.
-import copy
 from collections import Counter, namedtuple
-from typing import List, Tuple
-
-FourSide = namedtuple("FourSide", ["east", "south", "north", "west"])
+from typing import List
 
 
 class Solution:
@@ -24,13 +20,13 @@ class Solution:
 
         return res
 
-    def exist(self, raw_board: List[List[str]], word: str) -> bool:
+    def exist(self, board: List[List[str]], word: str) -> bool:
         """
         [( A, 0, 0 ), ( B, 0, 1 ), ( C, 1, 0 ), ( D, 1, 1 )]
         res = list
         - 재귀로 푼다.
             - 4방에 없으면 리턴
-                - 한번 사용한 것은 4방 찾을 때 안나오게 제약
+                - 한번 사용한 것은 판을 변경한다.
         1. 시작점을 찾는다.
             각 시작점 순서로
         2. 4방에 다음을 찾는다.
@@ -39,134 +35,55 @@ class Solution:
             [북, 서, 남, 동]
             -> [[]]
         3. 될때까지 찾는다.
+
+
+        1. 보드 배열의 모든 요소를 순회한다.
+        2. word[0]과 board[x][y]요소가 같다면
+            - 재귀호출
+
+            - x, y가 보드를 벗어나는지 확인
+            - word[i]와 board[x][y]가 같은지 확인
+                - 같다면 방문했다는 표시로 board[x][y]의 . 를 변경.
+            - board[x-1][y]와 다음 문자로 호출
+            - board[x+1][y]와 다음 문자로 호출
+            - board[x][y-1]와 다음 문자로 호출
+            - board[x][y2+]와 다음 문자로 호출
+
+
         """
         if not self.is_include_number_of_characters(
-            "".join(["".join(row) for row in raw_board]), word
+            "".join(["".join(row) for row in board]), word
         ):
             return False
 
-        res = list()
-        board = self.get_point_board(raw_board)
-        for row in board:
-            for point in [p for p in row if p[0] == word[0]]:
-                res.append(point)
-                self.append_next_point(1, point, res, word, board)
-
-                if self.get_word(res) == word:
+        for x, row in enumerate(board):
+            for y, col in enumerate(row):
+                if col == word[0] and self.is_word_exist(x, y, word, board):
                     return True
-                else:
-                    res = list()
 
-        return self.get_word(res) == word
+        return False
+
+    def is_word_exist(self, x, y, word, board):
+        if x < 0 or x >= len(board) or y < 0 or y >= len(board[x]):
+            return False
+
+        if word[0] != board[x][y]:
+            return False
+
+        if len(word) == 1:
+            return True
+
+        board[x][y] = "."
+
+        for next_x, next_y in [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]:
+            if self.is_word_exist(next_x, next_y, word[1:], board):
+                return True
+
+        board[x][y] = word[0]
+        return False
 
     def get_word(self, res):
         return "".join([ele[0] for ele in res])
-
-    def append_next_point(
-        self,
-        next_idx: int,
-        point: List,
-        res: List,
-        word: str,
-        board: List[List],
-    ) -> None:
-        if next_idx >= len(word):
-            return
-
-        len_original_res = len(res)
-        sides = [s for s in self.get4side(board, point) if s is not None]
-        for side in [side for side in sides if side[0] == word[next_idx]]:
-            if side in res:
-                continue
-
-            res.append(side)
-            self.append_next_point(next_idx + 1, side, res, word, board)
-
-            if self.get_word(res) == word:
-                break
-            else:
-                while len_original_res < len(res):
-                    res.pop()
-
-    def get4side(self, board: List[List], point: List):
-        north = self.get_point(board, ("", point[1] - 1, point[2] + 0))
-        west = self.get_point(board, ("", point[1] + 0, point[2] - 1))
-        south = self.get_point(board, ("", point[1] + 1, point[2] + 0))
-        east = self.get_point(board, ("", point[1] + 0, point[2] + 1))
-
-        return FourSide(
-            east,
-            south,
-            north,
-            west,
-        )
-
-    def get_point(self, board, point):
-        if point[1] < 0 or point[2] < 0:
-            return None
-
-        result = None
-        try:
-            result = board[point[1]][point[2]]
-        except IndexError:
-            result = None
-
-        return result
-
-    def get_point_board(self, raw_board):
-        board = [[] for _ in range(len(raw_board))]
-        for row_i, row in enumerate(raw_board):
-            for col_i, col in enumerate(row):
-                board[row_i].append((col, row_i, col_i))
-
-        return board
-
-
-def test_get_4_side():
-    t0 = dict(
-        board=[["A", "B"], ["C", "D"]],
-        word="AB",
-        output=True,
-    )
-    s = Solution()
-    board = s.get_point_board(t0["board"])
-    sides = s.get4side(board, ("A", 0, 0))
-    assert sides.north is None
-    assert sides.west is None
-    assert sides.south == ("C", 1, 0)
-    assert sides.east == ("B", 0, 1)
-
-    sides = s.get4side(board, ("D", 1, 1))
-    assert sides.north == ("B", 0, 1)
-    assert sides.west == ("C", 1, 0)
-    assert sides.south is None
-    assert sides.east is None
-
-
-def test_get_point_board():
-    t0 = dict(
-        board=[["A", "B"], ["C", "D"]],
-        word="AB",
-        output=True,
-    )
-    s = Solution()
-
-    board = s.get_point_board(t0["board"])
-    assert board == [[("A", 0, 0), ("B", 0, 1)], [("C", 1, 0), ("D", 1, 1)]]
-
-
-def test_get_point():
-    t0 = dict(
-        board=[["A", "B"], ["C", "D"], []],
-        word="AB",
-        output=True,
-    )
-    s = Solution()
-    board = s.get_point_board(t0["board"])
-    a = s.get_point(board, ("", 0, 0))
-    assert a == ("A", 0, 0)
-    e = s.get_point(board, ("", 2, 2))
-    assert e is None
 
 
 def test_simple_exist():
@@ -192,8 +109,8 @@ def test_simple_exist():
     )
 
     s = Solution()
-    # ts = [t0, t1, t2, t3]
-    ts = [t3]
+    ts = [t0, t1, t2, t3]
+    # ts = [t1]
     for t in ts:
         print(t)
         assert s.exist(t["board"], t["word"]) == t["output"]
