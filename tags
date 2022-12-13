@@ -2200,7 +2200,6 @@ FlupFCGIServer	21-async/mojifinder/bottle.py	/^class FlupFCGIServer(ServerAdapte
 Foo	22-dyn-attr-prop/doc_property.py	/^class Foo:$/;"	c
 Foo	24-class-metaprog/setattr/example_from_leo.py	/^class Foo:$/;"	c
 FormsDict	21-async/mojifinder/bottle.py	/^class FormsDict(MultiDict):$/;"	c
-FourSide	leetcode/test_1_14_word_serach.py	/^FourSide = namedtuple("FourSide", ["east", "south", "north", "west"])$/;"	v
 FrenchDeck	01-data-model/frenchdeck.py	/^class FrenchDeck:$/;"	c
 FrenchDeck	05-data-classes/frenchdeck.py	/^class FrenchDeck:$/;"	c
 FrenchDeck	mycode/01-data-model/test_frenchdeck.py	/^class FrenchDeck:$/;"	c
@@ -2369,6 +2368,8 @@ LottoBlower	13-protocol-abc/lotto.py	/^class LottoBlower(Tombola):$/;"	c
 LottoBlower	15-more-types/lotto/generic_lotto.py	/^class LottoBlower(Tombola, Generic[T]):  # <1>$/;"	c
 LottoPicker	15-more-types/protocol/random/generic_randompick_test.py	/^class LottoPicker(Generic[T_co]):$/;"	c
 MAIN_SUBFIELD_KEY	17-it-generator/isis2json/subfield.py	/^MAIN_SUBFIELD_KEY = "_"$/;"	v
+MATCH_URL	hackerscode/rest_api1.py	/^MATCH_URL = "https:\/\/jsonmock.hackerrank.com\/api\/football_matches"$/;"	v
+MATCH_URL	hackerscode/rest_api2.py	/^MATCH_URL = "https:\/\/jsonmock.hackerrank.com\/api\/football_matches"$/;"	v
 MAX_BITS	03-dict-set/support/hashdiff.py	/^MAX_BITS = len(format(sys.maxsize, "b"))$/;"	v
 MAX_CONCUR_REQ	20-executors/getflags/flags2_asyncio.py	/^MAX_CONCUR_REQ = 1000$/;"	v
 MAX_CONCUR_REQ	20-executors/getflags/flags2_asyncio_executor.py	/^MAX_CONCUR_REQ = 1000$/;"	v
@@ -2633,11 +2634,14 @@ Solution	leetcode/test_1_14_word_serach.py	/^class Solution:$/;"	c
 Solution	leetcode/test_1_6_merge_sorted_array.py	/^class Solution:$/;"	c
 Solution	leetcode/test_1_7_merge_without_space.py	/^class Solution:$/;"	c
 Solution	leetcode/test_1_8_pascals_triangle.py	/^class Solution:$/;"	c
+Solution	leetcode/test_anagram.py	/^class Solution:$/;"	c
 Solution	leetcode/test_contain_duplicate.py	/^class Solution:$/;"	c
 Solution	leetcode/test_majority_element.py	/^class Solution:$/;"	c
+Solution	leetcode/test_palindrome.py	/^class Solution:$/;"	c
 Solution	leetcode/test_remove_duplicate_sorted_array.py	/^class Solution(object):$/;"	c
 Solution	leetcode/test_search_insertion_position.py	/^class Solution:$/;"	c
 Solution	leetcode/test_two_sum.py	/^class Solution(object):$/;"	c
+Solution	leetcode/test_valid_ip.py	/^class Solution:$/;"	c
 Solution: indirection	links/README.md	/^## Solution: indirection$/;"	s	chapter:Short links for URLs in the book
 Source of the originals	18-with-match/lispy/original/README.md	/^# Source of the originals$/;"	c
 StplParser	21-async/mojifinder/bottle.py	/^class StplParser(object):$/;"	c
@@ -3997,7 +4001,6 @@ app	21-async/mojifinder/bottle.py	/^app = default_app = AppStack()$/;"	v
 app	21-async/mojifinder/web_mojifinder.py	/^app = FastAPI(  # <2>$/;"	v
 append	21-async/mojifinder/bottle.py	/^    def append(self, key, value):$/;"	m	class:HeaderDict
 append	21-async/mojifinder/bottle.py	/^    def append(self, key, value):$/;"	m	class:MultiDict
-append_next_point	leetcode/test_1_14_word_serach.py	/^    def append_next_point($/;"	m	class:Solution	typeref:typename:None
 apply	21-async/mojifinder/bottle.py	/^    def apply(self, callback, route):$/;"	m	class:JSONPlugin
 apply	21-async/mojifinder/bottle.py	/^    def apply(self, callback, route):$/;"	m	class:TemplatePlugin
 apply	21-async/mojifinder/bottle.py	/^    def apply(self, response):$/;"	m	class:HTTPResponse
@@ -4418,6 +4421,8 @@ board	02-array-seq/array-seq.py	/^board = [["_"] * 3 for i in range(3)]$/;"	v
 board	02-array-seq/array-seq.py	/^board = []$/;"	v
 body	21-async/mojifinder/bottle.py	/^    body = local_property()$/;"	v	class:LocalResponse
 body	21-async/mojifinder/bottle.py	/^    def body(self):$/;"	m	class:BaseRequest
+body	hackerscode/rest_api2.py	/^            body = request_match(params)$/;"	v
+body	hackerscode/rest_api2.py	/^    body = request_match(params)$/;"	v
 book	05-data-classes/dataclass/resource.py	/^    book = Resource($/;"	v
 book	05-data-classes/dataclass/resource_repr.py	/^    book = Resource($/;"	v
 book2	05-data-classes/dataclass/resource.py	/^    book2 = Resource(**book_dict)$/;"	v
@@ -6246,7 +6251,7 @@ events	22-dyn-attr-prop/oscon/osconfeed-sample.json	/^    "events": [$/;"	a	obje
 evwsgi	21-async/mojifinder/bottle.py	/^        import fapws._evwsgi as evwsgi$/;"	I	member:FapwsServer.run	file:	nameref:module:fapws._evwsgi
 examples	04-text-byte/skin.py	/^examples = [THUMB]  # <3>$/;"	v
 execute	21-async/mojifinder/bottle.py	/^    def execute(self, _stdout, kwargs):$/;"	m	class:SimpleTemplate
-exist	leetcode/test_1_14_word_serach.py	/^    def exist(self, raw_board: List[List[str]], word: str) -> bool:$/;"	m	class:Solution	typeref:typename:bool
+exist	leetcode/test_1_14_word_serach.py	/^    def exist(self, board: List[List[str]], word: str) -> bool:$/;"	m	class:Solution	typeref:typename:bool
 expand	17-it-generator/isis2json/subfield.py	/^def expand(content, subkeys=None):$/;"	f
 expand	18-with-match/lispy/original/lispy.py	/^def expand(x, toplevel=False):$/;"	f
 expand_cc_args	20-executors/getflags/flags2_common.py	/^def expand_cc_args($/;"	f	typeref:typename:list[str]
@@ -6322,6 +6327,8 @@ form	21-async/mojifinder/web_mojifinder.py	/^def form():  # <9>$/;"	f
 form	21-async/mojifinder/web_mojifinder_bottle.py	/^def form():$/;"	f
 format_results	21-async/mojifinder/charindex.py	/^def format_results(chars: set[Char]) -> Iterator[str]:$/;"	f	typeref:typename:Iterator[str]
 forms	21-async/mojifinder/bottle.py	/^    def forms(self):$/;"	m	class:BaseRequest
+fptr	hackerscode/rest_api1.py	/^    fptr = open(os.environ["OUTPUT_PATH"], "w")$/;"	v
+fptr	hackerscode/rest_api2.py	/^fptr = open(os.environ['OUTPUT_PATH'], 'w')$/;"	v
 frac	17-it-generator/aritprog_float_error.py	/^        frac = next(ap_frac)$/;"	v
 frac	17-it-generator/aritprog_float_error.py	/^    frac = next(ap_frac)$/;"	v
 from_json	15-more-types/typeddict/books.py	/^def from_json(data: str) -> BookDict:$/;"	f	typeref:typename:BookDict
@@ -6382,7 +6389,8 @@ get	21-async/mojifinder/bottle.py	/^    def get(self, key, default=None, index=-
 get	21-async/mojifinder/bottle.py	/^    def get(self, path=None, method="GET", **options):$/;"	m	class:Bottle
 get	21-async/mojifinder/bottle.py	/^    def get(self, value, default=None):$/;"	m	class:BaseRequest
 get	21-async/mojifinder/bottle.py	/^get = make_default_app_wrapper("get")$/;"	v
-get4side	leetcode/test_1_14_word_serach.py	/^    def get4side(self, board: List[List], point: List):$/;"	m	class:Solution
+getNumDraws	hackerscode/rest_api2.py	/^def getNumDraws(year):$/;"	f
+getTotalGoals	hackerscode/rest_api1.py	/^def getTotalGoals(team, year):$/;"	f
 get_callback_args	21-async/mojifinder/bottle.py	/^    def get_callback_args(self):$/;"	m	class:Route
 get_config	21-async/mojifinder/bottle.py	/^    def get_config(self, key, default=None):$/;"	m	class:Route
 get_connection	24-class-metaprog/persistent/dblib.py	/^def get_connection() -> sqlite3.Connection:$/;"	f	typeref:typename:sqlite3.Connection
@@ -6395,11 +6403,12 @@ get_flag	20-executors/getflags/flags2_asyncio_executor.py	/^async def get_flag(c
 get_flag	20-executors/getflags/flags2_sequential.py	/^def get_flag(base_url: str, cc: str) -> bytes:$/;"	f	typeref:typename:bytes
 get_flag	20-executors/getflags/flags3_asyncio.py	/^async def get_flag(client: httpx.AsyncClient, base_url: str, cc: str) -> bytes:  # <1>$/;"	f	typeref:typename:bytes
 get_flag	20-executors/getflags/flags_asyncio.py	/^async def get_flag(client: AsyncClient, cc: str) -> bytes:  # <4>$/;"	f	typeref:typename:bytes
+get_goals	hackerscode/rest_api1.py	/^def get_goals(team_pos, team, year):$/;"	f
 get_header	21-async/mojifinder/bottle.py	/^    def get_header(self, name, default=None):$/;"	m	class:BaseRequest
 get_header	21-async/mojifinder/bottle.py	/^    def get_header(self, name, default=None):$/;"	m	class:BaseResponse
 get_header	21-async/mojifinder/bottle.py	/^    def get_header(self, name, default=None):$/;"	m	class:FileUpload
-get_point	leetcode/test_1_14_word_serach.py	/^    def get_point(self, board, point):$/;"	m	class:Solution
-get_point_board	leetcode/test_1_14_word_serach.py	/^    def get_point_board(self, raw_board):$/;"	m	class:Solution
+get_positive_integer	code_test/test_code1.py	/^def get_positive_integer(sorted_arr):$/;"	f
+get_positive_integer	code_test/unity/test_example.py	/^def get_positive_integer(sorted_arr):$/;"	f
 get_syntax	21-async/mojifinder/bottle.py	/^    def get_syntax(self):$/;"	m	class:StplParser
 get_undecorated_callback	21-async/mojifinder/bottle.py	/^    def get_undecorated_callback(self):$/;"	m	class:Route
 get_url	21-async/mojifinder/bottle.py	/^    def get_url(self, routename, **kargs):$/;"	m	class:Bottle
@@ -6421,7 +6430,9 @@ global_env_for_first_test	02-array-seq/lispy/py3.10/lis_test.py	/^global_env_for
 global_env_for_first_test	02-array-seq/lispy/py3.9/lis_test.py	/^global_env_for_first_test = standard_env()$/;"	v
 global_env_for_first_test	18-with-match/lispy/py3.10/lis_test.py	/^global_env_for_first_test = standard_env()$/;"	v
 global_env_for_first_test	18-with-match/lispy/py3.9/lis_test.py	/^global_env_for_first_test = standard_env()$/;"	v
+goals	hackerscode/rest_api2.py	/^goals = 0$/;"	v
 grade	02-array-seq/array-seq.py	/^def grade(score, breakpoints=[60, 70, 80, 90], grades="FDCBA"):$/;"	f
+groupAnagrams	leetcode/test_anagram.py	/^    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:$/;"	m	class:Solution	typeref:typename:List[List[str]]
 guests	05-data-classes/dataclass/club.py	/^    guests: list = field(default_factory=list)$/;"	v	class:ClubMember	typeref:typename:list
 guests	05-data-classes/dataclass/club_generic.py	/^    guests: list[str] = field(default_factory=list)  # <1>$/;"	v	class:ClubMember	typeref:typename:list[str]
 guests	05-data-classes/dataclass/club_wrong.py	/^    guests: list = []$/;"	v	class:ClubMember	typeref:typename:list
@@ -6487,6 +6498,7 @@ install	15-more-types/cafeteria/invariant.py	/^def install(dispenser: BeverageDi
 install	21-async/mojifinder/bottle.py	/^    def install(self, plugin):$/;"	m	class:Bottle
 install	21-async/mojifinder/bottle.py	/^install = make_default_app_wrapper("install")$/;"	v
 invoice	02-array-seq/array-seq.py	/^invoice = """$/;"	v
+isPalindrome	leetcode/test_palindrome.py	/^    def isPalindrome(self, s: str) -> bool:$/;"	m	class:Solution	typeref:typename:bool
 is_ajax	21-async/mojifinder/bottle.py	/^    def is_ajax(self):$/;"	m	class:BaseRequest
 is_include_number_of_characters	leetcode/test_1_14_word_serach.py	/^    def is_include_number_of_characters(self, a_word, b_word):$/;"	m	class:Solution
 is_pair	18-with-match/lispy/original/lispy.py	/^def is_pair(x):$/;"	f
@@ -6495,6 +6507,7 @@ is_prime	19-concurrency/primes/py36/primes.py	/^def is_prime(n: int) -> bool:$/;
 is_prime	19-concurrency/primes/spinner_prime_async_nap.py	/^async def is_prime(n):$/;"	f
 is_prime	20-executors/primes/primes.py	/^def is_prime(n: int) -> bool:$/;"	f	typeref:typename:bool
 is_unit	15-more-types/protocol/abs_demo.py	/^def is_unit(v: SupportsAbs[float]) -> bool:  # <2>$/;"	f	typeref:typename:bool
+is_word_exist	leetcode/test_1_14_word_serach.py	/^    def is_word_exist(self, x, y, word, board):$/;"	m	class:Solution
 is_xhr	21-async/mojifinder/bottle.py	/^    def is_xhr(self):$/;"	m	class:BaseRequest
 isa	18-with-match/lispy/original/lispy.py	/^isa = isinstance$/;"	v
 isis2json.py	17-it-generator/isis2json/README.rst	/^isis2json.py$/;"	H
@@ -7696,6 +7709,7 @@ over	23-descriptor/descriptorkinds_dump.py	/^    over = Overriding()$/;"	v	class
 over_no_get	23-descriptor/descriptorkinds.py	/^    over_no_get = OverridingNoGet()$/;"	v	class:Managed
 over_no_get	23-descriptor/descriptorkinds_dump.py	/^    over_no_get = OverridingNoGet()$/;"	v	class:Model
 params	21-async/mojifinder/bottle.py	/^    def params(self):$/;"	m	class:BaseRequest
+params	hackerscode/rest_api2.py	/^params = dict(year=year)$/;"	v
 parse	02-array-seq/lispy/py3.10/lis.py	/^def parse(program: str) -> Expression:$/;"	f	typeref:typename:Expression
 parse	02-array-seq/lispy/py3.9/lis.py	/^def parse(program: str) -> Expression:$/;"	f	typeref:typename:Expression
 parse	17-it-generator/tree/classtree/classtree.py	/^def parse(name):$/;"	f
@@ -8610,13 +8624,18 @@ report	19-concurrency/primes/procs_race_condition.py	/^def report(workers: int, 
 report	19-concurrency/primes/threads.py	/^def report(workers: int, results: ResultQueue) -> int:$/;"	f	typeref:typename:int
 repr	24-class-metaprog/sentinel/sentinel_test.py	/^    repr = "***SentinelRepr***"$/;"	v	class:SentinelCustomRepr
 request	21-async/mojifinder/bottle.py	/^request = LocalRequest()$/;"	v
+request_match	hackerscode/rest_api1.py	/^def request_match(params):$/;"	f
+request_match	hackerscode/rest_api2.py	/^def request_match(params):$/;"	f
 require	18-with-match/lispy/original/lispy.py	/^def require(x, predicate, msg="wrong length"):$/;"	f
+res	hackerscode/rest_api2.py	/^res = requests.get(MATCH_URL, params)$/;"	v
 res1	08-def-type-hints/typevars_constrained.py	/^res1 = triple1(2)$/;"	v
 res2	08-def-type-hints/typevar_bounded.py	/^res2 = triple2(2)$/;"	v
 res2	08-def-type-hints/typevars_constrained.py	/^res2 = triple2(2)$/;"	v
 reset	21-async/mojifinder/bottle.py	/^    def reset(self):$/;"	m	class:Route
 reset	21-async/mojifinder/bottle.py	/^    def reset(self, route=None):$/;"	m	class:Bottle
 response	21-async/mojifinder/bottle.py	/^response = LocalResponse()$/;"	v
+result	hackerscode/rest_api1.py	/^    result = getTotalGoals(team, year)$/;"	v
+result	hackerscode/rest_api2.py	/^result = getNumDraws(year)$/;"	v
 reverse	23-descriptor/method_is_descriptor.py	/^    def reverse(self):$/;"	m	class:Text
 reverse_write	18-with-match/mirror.py	/^    def reverse_write(self, text):  # <5>$/;"	m	class:LookingGlass
 reverse_write	18-with-match/mirror_gen.py	/^    def reverse_write(text):  # <3>$/;"	f	function:looking_glass	file:
@@ -9619,6 +9638,10 @@ snooze	09-closure-deco/clock/clockdeco_param_demo1.py	/^def snooze(seconds):$/;"
 snooze	09-closure-deco/clock/clockdeco_param_demo2.py	/^def snooze(seconds):$/;"	f
 socket	21-async/domains/curio/blogdom.py	/^import curio.socket as socket$/;"	I	nameref:module:curio.socket
 socket	21-async/domains/curio/domainlib.py	/^import curio.socket as socket$/;"	I	nameref:module:curio.socket
+solution	code_test/test_code.py	/^def solution(A):$/;"	f
+solution	code_test/test_code1.py	/^def solution(A):$/;"	f
+solution	code_test/unity/test_code1.py	/^def solution(A):$/;"	f
+solution	code_test/unity/test_example.py	/^def solution(A):$/;"	f
 sort_fun	mycode/01-data-model/test_frenchdeck.py	/^def sort_fun(card):$/;"	f
 sorted_fruits	04-text-byte/locale_sort.py	/^sorted_fruits = sorted(fruits, key=locale.strxfrm)$/;"	v
 spam	23-descriptor/descriptorkinds.py	/^    def spam(self):  # <6>$/;"	m	class:Managed
@@ -10190,6 +10213,7 @@ t	mycode/02-array-seq/test_abc.py	/^t = tuple((a_e for a_e in a))$/;"	v
 t0	02-array-seq/array-seq.py	/^t0 = pc()$/;"	v
 tag	07-1class-func/tagger.py	/^def tag(name, *content, class_=None, **attrs):$/;"	f
 tag	08-def-type-hints/arg_lab.py	/^def tag($/;"	f	typeref:typename:str
+team	hackerscode/rest_api1.py	/^    team = input()$/;"	v
 template	21-async/mojifinder/bottle.py	/^def template(*args, **kwargs):$/;"	f
 test	03-dict-set/support/container_perftest.py	/^def test(container_type, verbose):$/;"	f
 test	13-protocol-abc/tombola_runner.py	/^def test(cls, verbose=False):$/;"	f
@@ -10407,9 +10431,7 @@ test_general_discount	10-dp-1class-func/strategy_param_test.py	/^def test_genera
 test_generate1	leetcode/test_1_8_pascals_triangle.py	/^def test_generate1():$/;"	f
 test_geohash_max_precision	08-def-type-hints/coordinates/coordinates_named_test.py	/^def test_geohash_max_precision() -> None:$/;"	f	typeref:typename:None
 test_geohash_max_precision	08-def-type-hints/coordinates/coordinates_test.py	/^def test_geohash_max_precision() -> None:$/;"	f	typeref:typename:None
-test_get_4_side	leetcode/test_1_14_word_serach.py	/^def test_get_4_side():$/;"	f
-test_get_point	leetcode/test_1_14_word_serach.py	/^def test_get_point():$/;"	f
-test_get_point_board	leetcode/test_1_14_word_serach.py	/^def test_get_point_board():$/;"	f
+test_group_anagrams	leetcode/test_anagram.py	/^def test_group_anagrams():$/;"	f
 test_hello	mycode/01-data-model/test_frenchdeck.py	/^def test_hello():$/;"	f
 test_init	24-class-metaprog/metabunch/from3.6/bunch_test.py	/^def test_init():$/;"	f
 test_init	24-class-metaprog/metabunch/nutshell3e/bunch_test.py	/^def test_init():$/;"	f
@@ -10442,6 +10464,7 @@ test_invocation_user_procedure	18-with-match/lispy/py3.10/lis_test.py	/^def test
 test_invocation_user_procedure	18-with-match/lispy/py3.9/lis_test.py	/^def test_invocation_user_procedure(std_env: Environment) -> None:$/;"	f	typeref:typename:None
 test_irregular	08-def-type-hints/messages/hints_2/messages_test.py	/^def test_irregular(qty: int, expected: str) -> None:$/;"	f	typeref:typename:None
 test_is_include_number_of_characters	leetcode/test_1_14_word_serach.py	/^def test_is_include_number_of_characters():$/;"	f
+test_is_palindrome	leetcode/test_palindrome.py	/^def test_is_palindrome():$/;"	f
 test_isinstance	13-protocol-abc/typing/randompick_test.py	/^def test_isinstance() -> None:  # <4>$/;"	f	typeref:typename:None
 test_isinstance	13-protocol-abc/typing/randompickload_test.py	/^def test_isinstance() -> None:  # <4>$/;"	f	typeref:typename:None
 test_isinstance	15-more-types/protocol/random/generic_randompick_test.py	/^def test_isinstance() -> None:$/;"	f	typeref:typename:None
@@ -10546,7 +10569,12 @@ test_slots	24-class-metaprog/metabunch/from3.6/bunch_test.py	/^def test_slots():
 test_slots	24-class-metaprog/metabunch/nutshell3e/bunch_test.py	/^def test_slots():$/;"	f
 test_slots	24-class-metaprog/metabunch/original/bunch_test.py	/^def test_slots():$/;"	f
 test_slots	24-class-metaprog/metabunch/pre3.6/bunch_test.py	/^def test_slots():$/;"	f
+test_solution	code_test/test_code.py	/^def test_solution():$/;"	f
+test_solution	code_test/test_code1.py	/^def test_solution():$/;"	f
+test_solution	code_test/unity/test_code1.py	/^def test_solution():$/;"	f
+test_solution	code_test/unity/test_example.py	/^def test_solution():$/;"	f
 test_sort	mycode/01-data-model/test_frenchdeck.py	/^def test_sort():$/;"	f
+test_str	leetcode/test_palindrome.py	/^def test_str():$/;"	f
 test_subclasses	17-it-generator/tree/classtree/classtree_test.py	/^def test_subclasses():$/;"	f
 test_subclasses_of_type	17-it-generator/tree/classtree/classtree_test.py	/^def test_subclasses_of_type():$/;"	f
 test_subset	leetcode/test_1_13_subsets.py	/^def test_subset():$/;"	f
@@ -10561,6 +10589,9 @@ test_tree_1_level	17-it-generator/tree/classtree/classtree_test.py	/^def test_tr
 test_tree_2_levels	17-it-generator/tree/classtree/classtree_test.py	/^def test_tree_2_levels():$/;"	f
 test_twoSum	leetcode/test_two_sum.py	/^def test_twoSum():$/;"	f
 test_update_record	24-class-metaprog/persistent/dblib_test.py	/^def test_update_record(create_movies_sql):$/;"	f
+test_valid_ip	leetcode/test_valid_ip.py	/^def test_valid_ip():$/;"	f
+test_valid_ipv4	leetcode/test_valid_ip.py	/^def test_valid_ipv4():$/;"	f
+test_valid_ipv6	leetcode/test_valid_ip.py	/^def test_valid_ipv6():$/;"	f
 test_vector_abs	mycode/01-data-model/test_vector.py	/^def test_vector_abs():$/;"	f
 test_vector_mul	mycode/01-data-model/test_vector.py	/^def test_vector_mul():$/;"	f
 test_vector_plus	mycode/01-data-model/test_vector.py	/^def test_vector_plus():$/;"	f
@@ -11586,6 +11617,7 @@ total	10-dp-1class-func/untyped/strategy_param.py	/^    def total(self):$/;"	m	c
 total	10-dp-1class-func/untyped/strategy_param.py	/^    def total(self):$/;"	m	class:Order
 total	10-dp-1class-func/untyped/strategy_param2.py	/^    def total(self):$/;"	m	class:LineItem
 total	10-dp-1class-func/untyped/strategy_param2.py	/^    def total(self):$/;"	m	class:Order
+total_pages	hackerscode/rest_api2.py	/^    total_pages = body["total_pages"]$/;"	v
 touni	21-async/mojifinder/bottle.py	/^def touni(s, enc="utf8", err="strict"):$/;"	f
 transform_func	03-dict-set/transformdict.py	/^    def transform_func(self):$/;"	m	class:TransformDict
 translate	21-async/mojifinder/bottle.py	/^    def translate(self):$/;"	m	class:StplParser
@@ -12375,6 +12407,9 @@ v2	15-more-types/protocol/abs_demo.py	/^v2 = Vector2d(1, 1)$/;"	v
 v3	15-more-types/protocol/abs_demo.py	/^v3 = complex(0.5, math.sqrt(3) \/ 2)$/;"	v
 v4	15-more-types/protocol/abs_demo.py	/^v4 = 1  # <6>$/;"	v
 val	mycode/02-array-seq/test_unpacking.py	/^val = (10, 3)$/;"	v
+validIPAddress	leetcode/test_valid_ip.py	/^    def validIPAddress(self, queryIP: str) -> str:$/;"	m	class:Solution	typeref:typename:str
+valid_Ip4	leetcode/test_valid_ip.py	/^    def valid_Ip4(self, query_ip: str) -> bool:$/;"	m	class:Solution	typeref:typename:bool
+valid_Ip6	leetcode/test_valid_ip.py	/^    def valid_Ip6(self, query_ip: str) -> bool:$/;"	m	class:Solution	typeref:typename:bool
 valid_base_60	24-class-metaprog/hours/hours.py	/^def valid_base_60(n, unit):$/;"	f
 valid_table	24-class-metaprog/persistent/dblib.py	/^def valid_table(table_name: str, fields: FieldMap) -> bool:$/;"	f	typeref:typename:bool
 validate	23-descriptor/bulkfood/model_v5.py	/^    def validate(self, name, value):  # <1>$/;"	m	class:Quantity
@@ -13420,6 +13455,8 @@ y	24-class-metaprog/metabunch/from3.6/bunch_test.py	/^    y = 0.0$/;"	v	class:Po
 y	24-class-metaprog/metabunch/nutshell3e/bunch_test.py	/^    y = 0.0$/;"	v	class:Point
 y	24-class-metaprog/metabunch/original/bunch_test.py	/^    y = 0.0$/;"	v	class:Point
 y	24-class-metaprog/metabunch/pre3.6/bunch_test.py	/^    y = 0.0$/;"	v	class:Point
+year	hackerscode/rest_api1.py	/^    year = int(input().strip())$/;"	v
+year	hackerscode/rest_api2.py	/^year = int(input().strip())$/;"	v
 yieldroutes	21-async/mojifinder/bottle.py	/^def yieldroutes(func):$/;"	f
 ze_carioca	08-def-type-hints/birds/protocol/parrot.py	/^ze_carioca = Parrot()$/;"	v
 zip_replace	08-def-type-hints/replacer.py	/^def zip_replace(text: str, changes: Iterable[FromTo]) -> str:  # <2>$/;"	f	typeref:typename:str
